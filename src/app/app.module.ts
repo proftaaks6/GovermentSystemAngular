@@ -4,16 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import { CartrackerComponent } from './components/cartracker/cartracker.component';
+import { AuthService } from './shared/services/auth.service';
+import { AuthInterceptor } from './shared/services/auth.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    // CartrackerComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +21,14 @@ import { CartrackerComponent } from './components/cartracker/cartracker.componen
     NgbModule.forRoot(),
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
