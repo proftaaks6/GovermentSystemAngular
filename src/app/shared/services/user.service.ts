@@ -15,7 +15,7 @@ export class UserService {
       }
 
       try {
-        return await this.http.post<ClientUser>('http://localhost:8080/deploy/v1/government/user', body).toPromise();
+        return await this.http.post<ClientUser>('government/user', body).toPromise();
       } catch (e) {
         throw e;
       }

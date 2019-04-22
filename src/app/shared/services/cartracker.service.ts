@@ -9,6 +9,6 @@ export class CartrackerService {
 
     createTracker(): Observable<any> {
       const payload = new HttpParams();
-      return this.http.post<any>('http://localhost:8080/deploy/v1/registration/tracker', { })
+      return this.http.post<any>('registration/tracker', { })
     }
 }
