@@ -9,10 +9,12 @@ import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { CartrackerComponent } from './components/cartracker/cartracker.component';
+import { VehicleComponent } from './components/vehicle/vehicle.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    VehicleComponent,
     // CartrackerComponent
   ],
   imports: [
