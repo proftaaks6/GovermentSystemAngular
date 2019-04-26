@@ -8,16 +8,12 @@ import { ClientUser } from '../models/clientUser';
 export class UserService {
     constructor(private http: HttpClient) { }
 
-    async saveNewUser(name: string, email: string): Promise<ClientUser> {
+    async saveNewUser(name: string, email: string, address: string, residence: string): Promise<ClientUser> {
       let body = {
         email,
         name
       }
 
-      try {
-        return await this.http.post<ClientUser>('government/user', body).toPromise();
-      } catch (e) {
-        throw e;
-      }
+      return await this.http.post<ClientUser>('government/user', body).toPromise();
     }
 }

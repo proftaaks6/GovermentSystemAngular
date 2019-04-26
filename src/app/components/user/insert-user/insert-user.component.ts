@@ -10,6 +10,8 @@ export class InsertUserComponent implements OnInit {
 
   private email: string;
   private name: string;
+  private address: string;
+  private residence: string;
 
   constructor(private userService: UserService) { }
 
@@ -17,7 +19,7 @@ export class InsertUserComponent implements OnInit {
   }
 
   async onSubmit() {
-    await this.userService.saveNewUser(this.name, this.email);
+    await this.userService.saveNewUser(this.name, this.email, this.address, this.residence);
   }
 
 }

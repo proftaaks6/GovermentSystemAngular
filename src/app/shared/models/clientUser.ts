@@ -3,4 +3,6 @@ export class ClientUser {
   public name: string;
   public ownedCarIds: number[];
   public email: string;
+  public address: string;
+  public residence: string;
 }
