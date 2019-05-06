@@ -20,5 +20,9 @@ export class UserService {
       };
 
       return await this.http.post<ClientUser>('governmentAdmin/deploy/v1/government/user', body.toString(), options).toPromise();
+    } 
+
+    async getAll(): Promise<ClientUser[]> {
+      return await this.http.get<ClientUser[]>('governmentAdmin/deploy/v1/government/users').toPromise();
     }
 }

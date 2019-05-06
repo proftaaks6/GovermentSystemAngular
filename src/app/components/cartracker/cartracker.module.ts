@@ -8,11 +8,13 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule }   from '@angular/forms';
 
 import { HttpClientModule} from '@angular/common/http';
+import { LinkToUserComponent } from './link-to-user/link-to-user.component';
 
 @NgModule({
   declarations: [
     InsertCartrackerComponent,
-    CartrackerComponent
+    CartrackerComponent,
+    LinkToUserComponent
   ],
   imports: [
     CommonModule,
