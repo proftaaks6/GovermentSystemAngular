@@ -4,11 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
 
-      path: '',
+      path: 'cartracker',
       loadChildren: './components/cartracker/cartracker.module#CartrackerModule',
-      // canActivate: [AuthGuard]
-  }
-
+    // canActivate: [AuthGuard]
+  },
+  {path: 'vehicle', loadChildren: './components/vehicle/vehicle.module#VehicleModule'},
+  {path: 'NAW', loadChildren: './components/nawinformation/nawinformation.module#NawinformationModule'}
 ];
 
 @NgModule({

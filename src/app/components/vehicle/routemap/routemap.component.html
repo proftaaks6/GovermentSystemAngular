@@ -1,0 +1,8 @@
+<h3>Locaties</h3>
+<agm-map [longitude]="long" [latitude]="lat" [zoom]="zoom">
+  <agm-marker  *ngFor="let data of locations; let i = index" [latitude]="data.latitude" [longitude]="data.longitude">
+    <agm-info-window>
+      {{data.date}}
+    </agm-info-window>
+  </agm-marker>
+</agm-map>

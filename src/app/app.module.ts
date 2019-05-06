@@ -7,15 +7,13 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MarkerManager} from "@agm/core";
+import { NawinformationComponent } from './components/nawinformation/nawinformation.component';
 
-import { CartrackerComponent } from './components/cartracker/cartracker.component';
-import { VehicleComponent } from './components/vehicle/vehicle.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    VehicleComponent,
-    // CartrackerComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +21,9 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
     NgbModule.forRoot(),
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    MarkerManager
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
