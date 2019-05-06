@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import {VehicleService} from "../../shared/services/vehicle.service";
+import {Vehicle} from "../../models/vehicle.model";
+import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {RoutemapComponent} from "./routemap/routemap.component";
 @Component({
   selector: 'app-vehicle',
   templateUrl: './vehicle.component.html',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehicleComponent implements OnInit {
 
-  constructor() { }
+  private vehicles: Vehicle[] = [];
 
-  ngOnInit() {
+  constructor(private vehicleService: VehicleService, private modalService: NgbModal) {
   }
 
+
+  ngOnInit() {
+    // @ts-ignore
+    this.vehicles = this.getVehicles();
+    console.log(this.vehicles);
+  }
+
+  getVehicles() {
+    return this.vehicleService.getVehicles();
+  }
+
+  showRoute(vehicle: Vehicle) {
+    const modal = this.modalService.open(RoutemapComponent);
+    modal.componentInstance.locations = vehicle.locationPoints;
+  }
 }
+

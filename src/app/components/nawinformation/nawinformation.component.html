@@ -1,0 +1,55 @@
+<h2>Register</h2>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Voornaam:</label>
+    <input type="text" formControlName="firstname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+    <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+      <div *ngIf="f.firstname.errors.required">Voornaam is verplicht</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Achternaam:</label>
+    <input type="text" formControlName="surname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.surname.errors }" />
+    <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
+      <div *ngIf="f.surname.errors.required">Achternaam is verplicht</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Land:</label>
+    <input type="text" formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.country.errors }" />
+    <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+      <div *ngIf="f.country.errors.required">Land is verplicht</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Woonplaats:</label>
+    <input type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+    <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+      <div *ngIf="f.city.errors.required">Woonplaats is verplicht</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Straat:</label>
+    <input type="text" formControlName="street" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.street.errors }" />
+    <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
+      <div *ngIf="f.street.errors.required">Straat is verplicht</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Huisnummer:</label>
+    <input type="text" formControlName="housenumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.housenumber.errors }" />
+    <div *ngIf="submitted && f.housenumber.errors" class="invalid-feedback">
+      <div *ngIf="f.housenumber.errors.required">Huisnummer is verplicht</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Postcode:</label>
+    <input type="text" formControlName="zipcode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipcode.errors }" />
+    <div *ngIf="submitted && f.zipcode.errors" class="invalid-feedback">
+      <div *ngIf="f.zipcode.errors.required">Postcode is verplicht</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary">Register</button>
+  </div>
+</form>

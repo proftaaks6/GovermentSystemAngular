@@ -7,24 +7,16 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
-<<<<<<< HEAD
+import {MarkerManager} from "@agm/core";
+import { NawinformationComponent } from './components/nawinformation/nawinformation.component';
 import { CartrackerComponent } from './components/cartracker/cartracker.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    VehicleComponent,
-    // CartrackerComponent
-=======
 import { AuthService } from './shared/services/auth.service';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent
->>>>>>> feature-add-user
   ],
   imports: [
     BrowserModule,
@@ -39,6 +31,7 @@ import { AuthInterceptor } from './shared/services/auth.interceptor';
       useClass: AuthInterceptor,
       multi: true
     },
+    MarkerManager
   ],
   bootstrap: [AppComponent]
 })
