@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
 
-declare const TOKEN_KEY = 'token';
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private TOKEN_KEY = 'token';
 
   private token: string;
 
   constructor() {
-    this.token = localStorage.getItem(TOKEN_KEY);
+    this.token = localStorage.getItem(this.TOKEN_KEY);
   }
 
   public saveUserDetails(token: string) {
-    localStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem(this.TOKEN_KEY, token);
   }
 
   public getToken(): string {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators/map';
 import { ClientUser } from '../models/clientUser';
@@ -9,11 +9,16 @@ export class UserService {
     constructor(private http: HttpClient) { }
 
     async saveNewUser(name: string, email: string, address: string, residence: string): Promise<ClientUser> {
-      let body = {
-        email,
-        name
-      }
+      let body = new URLSearchParams();
+      body.set('email', email);
+      body.set('name', name);
+      body.set('address', address);
+      body.set('residence', residence);
 
-      return await this.http.post<ClientUser>('government/user', body).toPromise();
+      let options = {
+        headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      };
+
+      return await this.http.post<ClientUser>('governmentAdmin/deploy/v1/government/user', body.toString(), options).toPromise();
     }
 }
