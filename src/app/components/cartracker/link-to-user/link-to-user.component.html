@@ -17,8 +17,8 @@
     </div>
     <div class="form-group">
       <label for="car">Car</label>
-      <select [(ngModel)]="selectedVehicleId" name="selectedVehicle" class="form-control">
-        <option *ngFor="let vehicle of vehicles" [value]="vehicle._id">({{vehicle.chassisNumber}}) {{vehicle.vehicleType}}</option>
+      <select [(ngModel)]="selectedVehicleChassis" name="selectedVehicle" class="form-control">
+        <option *ngFor="let vehicle of vehicles" [value]="vehicle.chassisNumber">({{vehicle.chassisNumber}}) {{vehicle.vehicleType}}</option>
       </select>
     </div>
 
