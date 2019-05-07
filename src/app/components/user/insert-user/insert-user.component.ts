@@ -13,13 +13,27 @@ export class InsertUserComponent implements OnInit {
   private address: string;
   private residence: string;
 
+  error = false;
+  success = false;
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
 
   async onSubmit() {
-    await this.userService.saveNewUser(this.name, this.email, this.address, this.residence);
+    this.success = false;
+    this.error = false;
+    try {
+      await this.userService.saveNewUser(this.name, this.email, this.address, this.residence);
+      this.success = true;
+      this.email = '';
+      this.name = '';
+      this.address = '';
+      this.residence = '';
+    } catch {
+      this.error = true;
+    }
   }
 
 }

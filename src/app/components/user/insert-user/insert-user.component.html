@@ -1,6 +1,13 @@
 <div class="container">
   <br/>
   <h1>Insert a new user</h1>
+  <div *ngIf="error" class="alert alert-danger" role="alert">
+    The operation wasn't succesful
+  </div>
+  <div *ngIf="success" class="alert alert-success" role="alert">
+    The operation was completed succesfully
+  </div>
+  
   <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
     <div class="form-group">
         <label for="name">Name</label>
