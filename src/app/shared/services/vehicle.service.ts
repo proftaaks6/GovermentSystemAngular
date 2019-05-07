@@ -550,11 +550,11 @@ export class VehicleService {
     return vehicles;
   }
 
-  async linkUserToVehicle(userId: number, vehicleId: number): Promise<boolean> {
+  async linkUserToVehicle(userId: number, vehicleChassis: string): Promise<boolean> {
     const url = `governmentAdmin/deploy/v1/government/linkcar`;
     let body = new URLSearchParams();
     body.set('userId', userId.toString());
-    body.set('vehicleId', vehicleId.toString());
+    body.set('vehicleChassis', vehicleChassis);
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
