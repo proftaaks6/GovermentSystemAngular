@@ -16,9 +16,9 @@ export class VehicleComponent implements OnInit {
   }
 
 
-  ngOnInit() {
+  async ngOnInit() {
     // @ts-ignore
-    this.vehicles = this.getVehicles();
+    this.vehicles = await this.getVehicles();
     console.log(this.vehicles);
   }
 
