@@ -10,7 +10,7 @@ import {RoutemapComponent} from "./routemap/routemap.component";
 })
 export class VehicleComponent implements OnInit {
 
-  private vehicles: Vehicle[] = [];
+  vehicles: Vehicle[] = [];
 
   constructor(private vehicleService: VehicleService, private modalService: NgbModal) {
   }

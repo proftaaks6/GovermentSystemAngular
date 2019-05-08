@@ -8,10 +8,10 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class InsertUserComponent implements OnInit {
 
-  private email: string;
-  private name: string;
-  private address: string;
-  private residence: string;
+  email: string;
+  name: string;
+  address: string;
+  residence: string;
 
   constructor(private userService: UserService) { }
 
