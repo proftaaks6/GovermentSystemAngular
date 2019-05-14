@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InsertUserComponent } from './insert-user/insert-user.component';
+import { ShowUsersComponent } from './show-users/show-users.component';
 
 const routes: Routes = [
-  { path: '', component: InsertUserComponent }
+  { path: 'insert', component: InsertUserComponent },
+  { path: '', component: ShowUsersComponent }
 ];
 
 @NgModule({
