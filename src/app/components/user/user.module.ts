@@ -6,9 +6,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowUsersComponent } from './show-users/show-users.component';
+import { UserComponent } from './user.component';
 
 @NgModule({
-  declarations: [InsertUserComponent, ShowUsersComponent],
+  declarations: [InsertUserComponent, ShowUsersComponent, UserComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
