@@ -31,14 +31,14 @@ export class AuthInterceptor implements HttpInterceptor {
     });
 
     return next.handle(request).pipe(tap(event => {
-        if (event instanceof HttpResponse) {
-          // Nothing to do with normal response
-        }
+      if (event instanceof HttpResponse) {
+        // Nothing to do with normal response
+      }
     }, err => {
       console.error(err);
       if (err.status === 401) {
-          // auto logout if 401 response returned from api
-          this.authService.logout();
+        // auto logout if 401 response returned from api
+        this.authService.logout();
       }
     }));
   }
