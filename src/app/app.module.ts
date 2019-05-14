@@ -15,12 +15,10 @@ import { AuthService } from './shared/services/auth.service';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { RegionselectComponent } from './components/regionselect/regionselect.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegionselectComponent,
     AppComponent,
     HomeComponent,
     NavbarComponent
