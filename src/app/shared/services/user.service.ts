@@ -19,10 +19,10 @@ export class UserService {
         headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       };
 
-      return await this.http.post<ClientUser>('governmentAdmin/deploy/v1/government/user', body.toString(), options).toPromise();
+      return await this.http.post<ClientUser>('userSystem/deploy/v1/usersystem/userInfo', body.toString(), options).toPromise();
     } 
 
     async getAll(): Promise<ClientUser[]> {
-      return await this.http.get<ClientUser[]>('governmentAdmin/deploy/v1/government/users').toPromise();
+      return await this.http.get<ClientUser[]>('userSystem/deploy/v1/usersystem/users').toPromise();
     }
 }
