@@ -5,7 +5,8 @@ const routes: Routes = [
   { path: 'cartracker', loadChildren: './components/cartracker/cartracker.module#CartrackerModule', /* canActivate: [AuthGuard] */ },
   { path: 'user', loadChildren: './components/user/user.module#UserModule', /* canActivate: [AuthGuard] */ },
   {path: 'vehicle', loadChildren: './components/vehicle/vehicle.module#VehicleModule'},
-  {path: 'naw', loadChildren: './components/nawinformation/nawinformation.module#NawinformationModule'}
+  {path: 'naw', loadChildren: './components/nawinformation/nawinformation.module#NawinformationModule'},
+  {path: 'regionselect', loadChildren: './components/regionselect/regionselect.module#RegionselectModule'}
 ];
 
 @NgModule({

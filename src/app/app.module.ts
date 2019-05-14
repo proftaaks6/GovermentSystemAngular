@@ -13,10 +13,12 @@ import { CartrackerComponent } from './components/cartracker/cartracker.componen
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { AuthService } from './shared/services/auth.service';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
+import { RegionselectComponent } from './components/regionselect/regionselect.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RegionselectComponent
   ],
   imports: [
     BrowserModule,
