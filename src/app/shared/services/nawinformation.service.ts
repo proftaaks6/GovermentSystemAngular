@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs'
 import {NAWInformationModel} from "../../models/nawinformation.model";
+import {environment} from "../../../environments/environment";
 
 const users = [
   {
@@ -94,7 +95,17 @@ export class NawinformationService {
     return users.filter(x => x._id === id)[0];
   }
 
-  changeNAWInformation(nawinformation: NAWInformationModel){
-    console.log(nawinformation);
+  async changeNAWInformation(naw: NAWInformationModel){
+    let body = new URLSearchParams();
+    body.set('name', naw.name);
+    body.set('address', naw.address);
+    body.set('residence', naw.residence);
+    body.set('email', naw.email);
+
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+
+    return await this.http.post('governmentAdmin/deploy/v1/government/user', body.toString(), options);
   }
 }

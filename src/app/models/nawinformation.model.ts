@@ -1,9 +1,9 @@
+import {Vehicle} from "./vehicle.model";
+
 export interface NAWInformationModel {
-  firstname: string;
-  surname: string;
-  country: string;
-  city: string;
-  street: string;
-  housenumber: string;
-  zipcode: string;
+  name: string;
+  address: string;
+  residence: string;
+  ownedCars: Vehicle[];
+  email: string;
 }
