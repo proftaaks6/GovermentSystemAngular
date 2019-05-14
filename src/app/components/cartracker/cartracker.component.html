@@ -1,4 +1,15 @@
-<!-- <app-nav></app-nav> -->
-<!-- <div class="main-container"> -->
-    <app-insert-cartracker></app-insert-cartracker>
-<!-- </div> -->
+<div class="container text-center">
+    <div class="jumbotron">
+        <h1 class="display-4">Cartrackers</h1>
+        <hr class="my-4">
+    
+        <div class="row">
+        <div class="col">
+            <a [routerLink]="['/cartracker/insert']" class="btn btn-primary">Insert new cartracker</a>
+        </div>
+        <div class="col">
+            <a [routerLink]="['/cartracker/change']" class="btn btn-primary">Link cartracker to user</a>
+        </div>
+        </div>
+    </div>
+</div>
