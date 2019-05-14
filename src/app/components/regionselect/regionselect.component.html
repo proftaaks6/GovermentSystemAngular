@@ -1,0 +1,73 @@
+<html>
+  <body>
+
+  <div class="container">
+    <br/>
+    <h1>Please select your preferred tax regions:</h1>
+    <br/>
+
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+      <h3>Region 1:</h3>
+      <div class="form-group">
+        <label for="tax_cost_1">Tax cost:</label>
+        <input type="text" [(ngModel)]="tax_cost_1" name="tax_cost" id="tax_cost_1" class="form-control">
+      </div>
+
+      <h3>Region 2:</h3>
+      <div class="form-group">
+        <label for="tax_cost_2">Tax cost:</label>
+        <input type="text" [(ngModel)]="tax_cost_2" name="tax_cost" id="tax_cost_2" class="form-control">
+      </div>
+
+      <h3>Region 3:</h3>
+      <div class="form-group">
+        <label for="tax_cost_3">Tax cost:</label>
+        <input type="text" [(ngModel)]="tax_cost_3" name="tax_cost" id="tax_cost_3" class="form-control">
+      </div>
+
+      <h3>Region 4:</h3>
+      <div class="form-group">
+        <label for="tax_cost_4">Tax cost:</label>
+        <input type="text" [(ngModel)]="tax_cost_4" name="tax_cost" id="tax_cost_4" class="form-control">
+      </div>
+
+      <button type="submit" class="btn btn-success" style="width:100%">Insert</button>
+
+    </form>
+  </div>
+  <br/>
+  <div id="map"></div>
+
+
+
+<!--    <script>-->
+
+<!--      function initMap() {-->
+<!--        var uluru = {lat: -25.344, lng: 131.036};-->
+
+<!--        var map = new google.maps.Map(-->
+<!--          document.getElementById('map'), {zoom: 4, center: uluru});-->
+
+<!--        var bounds = {-->
+<!--          north: 44.599,-->
+<!--          south: 44.490,-->
+<!--          east: -78.443,-->
+<!--          west: -78.649-->
+<!--        };-->
+
+<!--        // Define a rectangle and set its editable property to true.-->
+<!--        var rectangle = new google.maps.Rectangle({-->
+<!--          bounds: bounds,-->
+<!--          editable: true-->
+<!--        });-->
+<!--      }-->
+
+<!--    </script>-->
+
+<!--    <script async defer-->
+<!--          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ75KHIHKCbbKLZsQpYv5xGHTPA3gOHfg&callback=initMap">-->
+<!--      console.log("TEST");-->
+<!--    </script>-->
+
+  </body>
+</html>
