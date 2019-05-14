@@ -14,7 +14,7 @@ export class LinkToUserComponent implements OnInit {
   vehicles: Vehicle[];
   users: ClientUser[];
 
-  selectedVehicleId: number;
+  selectedVehicleChassis: string;
   selectedUserId: number;
 
   success = false;
@@ -31,7 +31,7 @@ export class LinkToUserComponent implements OnInit {
   }
 
   async onSubmit() {
-    if (!(this.selectedUserId && this.selectedVehicleId)) {
+    if (!(this.selectedUserId && this.selectedVehicleChassis)) {
       // Form not filled
       this.error = true;
       return;
@@ -40,9 +40,9 @@ export class LinkToUserComponent implements OnInit {
     this.success = false;
     this.error = false;
     
-    if (await this.vehicleService.linkUserToVehicle(this.selectedUserId, this.selectedVehicleId)) {
+    if (await this.vehicleService.linkUserToVehicle(this.selectedUserId, this.selectedVehicleChassis)) {
       this.selectedUserId = undefined;
-      this.selectedVehicleId = undefined;
+      this.selectedVehicleChassis = undefined;
       this.success = true;
     } else {
       this.error = true;

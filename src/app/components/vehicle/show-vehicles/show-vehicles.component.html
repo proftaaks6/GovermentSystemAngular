@@ -1,0 +1,27 @@
+<div class="container">
+  <br/>
+  <h1>Users</h1>
+  <br/>
+  <table class="table" style="width: 100%">
+    <thead>
+      <tr>
+        <th scope="col"> chassisnummer
+        </th>
+        <th scope="col"> Voertuig
+        </th>
+        <th scope="col"> Benzine
+        </th>
+        <th scope="col"> Emission
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vehicle of vehicles" (click)="showRoute(vehicle)">
+        <td>{{vehicle.chassisNumber}}</td>
+        <td>{{vehicle.vehicleType}}</td>
+        <td>{{vehicle.fuelType}}</td>
+        <td>{{vehicle.emission}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
