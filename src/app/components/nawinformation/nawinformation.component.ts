@@ -13,7 +13,7 @@ import {__values} from "tslib";
 export class NawinformationComponent implements OnInit {
 
     private user: NAWInformationModel = null;
-    private submitted = false;
+    submitted = false;
     registerForm: FormGroup;
 
 
