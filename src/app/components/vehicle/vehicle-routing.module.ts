@@ -5,7 +5,7 @@ import {VehicleComponent} from "./vehicle.component";
 
 const routes: Routes = [
   {
-    path: 'vehicle',
+    path: '',
     component: VehicleComponent
   }
 ];

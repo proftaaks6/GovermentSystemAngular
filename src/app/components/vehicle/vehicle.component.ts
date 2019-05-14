@@ -10,15 +10,15 @@ import {RoutemapComponent} from "./routemap/routemap.component";
 })
 export class VehicleComponent implements OnInit {
 
-  private vehicles: Vehicle[] = [];
+  vehicles: Vehicle[] = [];
 
   constructor(private vehicleService: VehicleService, private modalService: NgbModal) {
   }
 
 
-  ngOnInit() {
+  async ngOnInit() {
     // @ts-ignore
-    this.vehicles = this.getVehicles();
+    this.vehicles = await this.getVehicles();
     console.log(this.vehicles);
   }
 

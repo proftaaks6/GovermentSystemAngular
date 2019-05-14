@@ -4,7 +4,7 @@ import {NawinformationComponent} from "./nawinformation.component";
 
 const routes: Routes = [
   {
-    path: 'change',
+    path: '',
     component: NawinformationComponent
   }
 ];
