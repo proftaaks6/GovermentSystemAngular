@@ -6,17 +6,19 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {MarkerManager} from "@agm/core";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MarkerManager } from "@agm/core";
 import { NawinformationComponent } from './components/nawinformation/nawinformation.component';
 import { CartrackerComponent } from './components/cartracker/cartracker.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
-import { AuthService } from './shared/services/auth.service';
+import { AuthenticationService } from './shared/services/auth.service';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ import { AuthInterceptor } from './shared/services/auth.interceptor';
     HttpClientModule
   ],
   providers: [
-    AuthService,
+    AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

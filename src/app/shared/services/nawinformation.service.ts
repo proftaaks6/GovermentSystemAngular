@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs'
-import {NAWInformationModel} from "../../models/nawinformation.model";
+import { NAWInformationModel } from "../../models/nawinformation.model";
 
 const users = [
   {
@@ -90,11 +90,11 @@ const users = [
 export class NawinformationService {
   constructor(private http: HttpClient) { }
 
-  getNAWInformation(id: number){
+  getNAWInformation(id: number) {
     return users.filter(x => x._id === id)[0];
   }
 
-  changeNAWInformation(nawinformation: NAWInformationModel){
+  changeNAWInformation(nawinformation: NAWInformationModel) {
     console.log(nawinformation);
   }
 }
