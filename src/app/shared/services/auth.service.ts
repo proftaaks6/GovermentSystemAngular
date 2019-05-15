@@ -20,15 +20,16 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
+    console.log(+ password)
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
     });
 
     let body = new URLSearchParams();
-    body.set('email', username);
+    body.set('username', username);
     body.set('password', password);
 
-    return this.http.post<any>('/auth/login',
+    return this.http.post<any>('/governmentAdmin/deploy/v1/auth/login',
       body.toString(), {
         headers,
         observe: 'response'

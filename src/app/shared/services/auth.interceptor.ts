@@ -8,9 +8,9 @@ export class AuthInterceptor implements HttpInterceptor {
     // add authorization header with jwt token if available
     // let token = JSON.parse(localStorage.getItem('currentUser'));
     // console.log(token);
-
+    console.log('intercept auth!');
     let token = localStorage.getItem('currentUser');
-
+    console.log(token);
     // console.log(token);
     if (token) {
       request = request.clone({
