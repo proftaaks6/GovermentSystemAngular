@@ -26,8 +26,10 @@ export class LinkToUserComponent implements OnInit {
   async ngOnInit() {
     // Load cars and users
     // @ts-ignore
-    this.vehicles = this.vehicleService.getVehicles();
+    this.vehicles = await this.vehicleService.getVehicles();
     this.users = await this.userService.getAll();
+
+    console.log(this.vehicles, this.users);
   }
 
   async onSubmit() {

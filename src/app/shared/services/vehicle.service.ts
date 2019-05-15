@@ -2,6 +2,7 @@ import {environment} from "../../../environments/environment";
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Vehicle } from 'src/app/models/vehicle.model';
+import { LocationPoint } from 'src/app/models/locationPoint.model';
 
 @Injectable({providedIn: 'root'})
 export class VehicleService {
@@ -9,13 +10,21 @@ export class VehicleService {
   constructor(private http: HttpClient){}
 
   async getVehicles(): Promise<Vehicle[]> {
-    const resp = await this.http.get<Vehicle[]>('localhost:movementRegistration/deploy/v1/registration/exi').toPromise();
+    const resp = await this.http.get<Vehicle[]>('movementRegistration/deploy/v1/registration/vehicles').toPromise();
     return resp;
   }
 
   async linkUserToVehicle(userId: number, vehicleChassis: string): Promise<boolean> {
     const url = `userSystem/deploy/v1/usersystem/${userId}/car/${vehicleChassis}`;
 
-    return await this.http.post<boolean>(url, { }).toPromise();
+    await this.http.post<boolean>(url, { }).toPromise();
+
+    return true;
+  }
+
+  async getLocationPointsOfTracker(id: number): Promise<LocationPoint[]> {
+    const url = `movementRegstration/deploy/v1/registration/tracker/${id}/points`;
+
+    return await this.http.get<LocationPoint[]>(url).toPromise();
   }
 }
