@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NawinformationService} from "../../shared/services/nawinformation.service";
-import {NAWInformationModel} from "../../models/nawinformation.model";
+import {NAWInformationModel} from "../../shared/models/nawinformation.model";
 import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import {first} from "rxjs/operators";
 import {__values} from "tslib";

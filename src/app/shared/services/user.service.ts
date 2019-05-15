@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators/map';
-import { ClientUser } from '../models/clientUser';
+import { ClientUser } from '../models/clientUser.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
