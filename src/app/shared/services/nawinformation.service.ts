@@ -98,10 +98,10 @@ export class NawinformationService {
   async changeNAWInformation(nawinformation: NAWInformationModel) {
     console.log(nawinformation);
     let body = new URLSearchParams();
-    body.set('name', naw.name);
-    body.set('address', naw.address);
-    body.set('residence', naw.residence);
-    body.set('email', naw.email);
+    body.set('name', nawinformation.name);
+    body.set('address', nawinformation.address);
+    body.set('residence', nawinformation.residence);
+    body.set('email', nawinformation.email);
 
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')

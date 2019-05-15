@@ -12,11 +12,15 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<String>(localStorage.getItem('currentUser'));
-
+    console.log(this.currentUserSubject);
     this.currentUser = this.currentUserSubject.asObservable();
   }
   public get currentUserValue(): String {
     return this.currentUserSubject.value;
+  }
+
+  public isLoggedIn(): boolean {
+    return this.currentUserValue != null && this.currentUserValue != undefined;
   }
 
   login(username: string, password: string) {
@@ -50,6 +54,7 @@ export class AuthenticationService {
       return token;
     }));
   }
+
 
   logout() {
     // remove user from local storage to log user out
