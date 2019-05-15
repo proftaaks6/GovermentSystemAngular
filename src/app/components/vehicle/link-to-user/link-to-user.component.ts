@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Vehicle } from 'src/app/shared/models/vehicle.model';
-import { ClientUser } from 'src/app/shared/models/clientUser';
+import { ClientUser } from 'src/app/shared/models/clientUser.model';
 import { UserService } from 'src/app/shared/services/user.service';
 import { VehicleService } from 'src/app/shared/services/vehicle.service';
 

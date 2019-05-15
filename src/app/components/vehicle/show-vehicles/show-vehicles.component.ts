@@ -29,8 +29,7 @@ export class ShowVehiclesComponent implements OnInit {
 
   async showRoute(vehicle: Vehicle) {
     const modal = this.modalService.open(RoutemapComponent);
-
-    modal.componentInstance.locations = await this.vehicleService.getLocationPointsOfTracker(vehicle.tracker.id || 5);
+    modal.componentInstance.locations = await this.vehicleService.getLocationPointsOfVehicle(vehicle.id, new Date(2000, 1, 1), new Date());
   }
 }
 

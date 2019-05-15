@@ -23,7 +23,15 @@ export class VehicleService {
   }
 
   async getLocationPointsOfTracker(id: number): Promise<LocationPoint[]> {
-    const url = `movementRegstration/deploy/v1/registration/tracker/${id}/points`;
+    const url = `movementRegistration/deploy/v1/registration/tracker/${id}/points`;
+
+    return await this.http.get<LocationPoint[]>(url).toPromise();
+  }
+
+  async getLocationPointsOfVehicle(id: number, from: Date, to: Date): Promise<LocationPoint[]> {
+    const url = `movementRegistration/deploy/v1/registration/vehicle/${id}/points/from/${from.valueOf()}/to/${to.valueOf()}`;
+
+    console.log(url);
 
     return await this.http.get<LocationPoint[]>(url).toPromise();
   }
