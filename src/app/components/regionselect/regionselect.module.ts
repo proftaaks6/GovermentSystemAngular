@@ -6,11 +6,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {AgmCoreModule, GoogleMapsAPIWrapper} from "@agm/core";
+import { NumberOnlyDirective } from "../../models/number.directive";
 
 @NgModule({
 
   providers: [GoogleMapsAPIWrapper],
-  declarations: [RegionselectComponent],
+  declarations: [RegionselectComponent, NumberOnlyDirective],
   imports: [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBJ75KHIHKCbbKLZsQpYv5xGHTPA3gOHfg',
