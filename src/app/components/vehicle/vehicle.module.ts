@@ -10,12 +10,14 @@ import {AgmCoreModule, GoogleMapsAPIWrapper} from "@agm/core";
 import {MarkerManager} from "@agm/core";
 import { ShowVehiclesComponent } from './show-vehicles/show-vehicles.component';
 import { VehicleComponent } from './vehicle.component';
+import { LinkToUserComponent } from './link-to-user/link-to-user.component';
 
 @NgModule({
   declarations: [
     ShowVehiclesComponent,
     RoutemapComponent,
-    VehicleComponent
+    VehicleComponent,
+    LinkToUserComponent
   ],
   imports: [
     CommonModule,
