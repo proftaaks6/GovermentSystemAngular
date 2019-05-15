@@ -1,8 +1,8 @@
 import {environment} from "../../../environments/environment";
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import { Vehicle } from 'src/app/models/vehicle.model';
-import { LocationPoint } from 'src/app/models/locationPoint.model';
+import { Vehicle } from 'src/app/shared/models/vehicle.model';
+import { LocationPoint } from 'src/app/shared/models/locationPoint.model';
 
 @Injectable({providedIn: 'root'})
 export class VehicleService {

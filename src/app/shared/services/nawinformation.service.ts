@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs'
-import {NAWInformationModel} from "../../models/nawinformation.model";
+import {NAWInformationModel} from "../models/nawinformation.model";
 import {environment} from "../../../environments/environment";
 
 const users = [
@@ -106,6 +106,6 @@ export class NawinformationService {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
 
-    return await this.http.post('governmentAdmin/deploy/v1/government/user', body.toString(), options);
+    return await this.http.post('governmentAdmin/deploy/v1/government/user', body.toString(), options).toPromise();
   }
 }

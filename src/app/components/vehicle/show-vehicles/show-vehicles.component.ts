@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {VehicleService} from "../../../shared/services/vehicle.service";
-import {Vehicle} from "../../../models/vehicle.model";
+import {Vehicle} from "../../../shared/models/vehicle.model";
 import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {RoutemapComponent} from "../routemap/routemap.component";
 import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
