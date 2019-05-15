@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { NAWInformationModel } from "../models/nawinformation.model";
 import { environment } from "../../../environments/environment";
-import { NAWInformationModel } from '../models/nawinformation.model';
 
 const users = [
   {
