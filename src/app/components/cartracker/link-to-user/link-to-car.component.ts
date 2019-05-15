@@ -16,8 +16,8 @@ export class LinkToCarComponent implements OnInit {
   vehicles: Vehicle[];
   trackers: Tracker[];
 
-  selectedVehicleChassis: string;
-  selectedUserId: number;
+  selectedVehicleId: number;
+  selectedTrackerId: number;
 
   success = false;
   error = false;
@@ -34,7 +34,8 @@ export class LinkToCarComponent implements OnInit {
   }
 
   async onSubmit() {
-    if (!(this.selectedUserId && this.selectedVehicleChassis)) {
+    console.log(this.selectedTrackerId, this.selectedVehicleId);
+    if (!(this.selectedTrackerId && this.selectedVehicleId)) {
       // Form not filled
       this.error = true;
       return;
@@ -43,9 +44,9 @@ export class LinkToCarComponent implements OnInit {
     this.success = false;
     this.error = false;
     
-    if (await this.vehicleService.linkUserToVehicle(this.selectedUserId, this.selectedVehicleChassis)) {
-      this.selectedUserId = undefined;
-      this.selectedVehicleChassis = undefined;
+    if (await this.carTrackerService.linkTrackerToVehicle(this.selectedTrackerId, this.selectedVehicleId)) {
+      this.selectedTrackerId = undefined;
+      this.selectedVehicleId = undefined;
       this.success = true;
     } else {
       this.error = true;

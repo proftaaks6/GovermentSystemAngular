@@ -17,4 +17,11 @@ export class CartrackerService {
       const url = 'movementRegistration/deploy/v1/registration/trackers'
       return await this.http.get<Tracker[]>(url).toPromise();
     }
+
+    async linkTrackerToVehicle(trackerId: number, vehicleId: number): Promise<boolean> {
+      const url = `movementRegistration/deploy/v1/registration/vehicle/${vehicleId}/tracker/${trackerId}`;
+      await this.http.post<void>(url, { }).toPromise();
+
+      return true;
+    }
 }
