@@ -95,11 +95,8 @@ export class NawinformationService {
     return users.filter(x => x._id === id)[0];
   }
 
-<<<<<<< HEAD
-  changeNAWInformation(nawinformation: NAWInformationModel) {
+  async changeNAWInformation(nawinformation: NAWInformationModel) {
     console.log(nawinformation);
-=======
-  async changeNAWInformation(naw: NAWInformationModel){
     let body = new URLSearchParams();
     body.set('name', naw.name);
     body.set('address', naw.address);
@@ -110,7 +107,6 @@ export class NawinformationService {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
 
-    return await this.http.post('governmentAdmin/deploy/v1/government/user', body.toString(), options);
->>>>>>> b53725dfd0a66809f0538402f6a621d9bb27a563
+    return await this.http.post('governmentAdmin/deploy/v1/government/user', body.toString(), options).toPromise();
   }
 }
