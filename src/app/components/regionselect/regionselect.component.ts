@@ -1,9 +1,9 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {LatLng, MapsAPILoader} from '@agm/core';
-import {} from "googlemaps";
-import {Region} from "../../models/region.model";
-import {RegionService} from "../../shared/services/region.service";
-import {HttpResponse} from "@angular/common/http";
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { LatLng, MapsAPILoader } from '@agm/core';
+import { Map } from "googlemaps";
+import { Region } from "../../models/region.model";
+import { RegionService } from "../../shared/services/region.service";
+import { HttpResponse } from "@angular/common/http";
 
 declare var google;
 var firstRectangle;
@@ -80,8 +80,8 @@ export class RegionselectComponent implements OnInit {
   //   console.log(this.firstRegionNE.lat() + " and " + this.firstRegionNE.lng());
   // }
 
-  setCoords(regionNr){
-    switch(regionNr){
+  setCoords(regionNr) {
+    switch (regionNr) {
       case 1: {
         this.firstRegionNE = firstRectangle.getBounds().getNorthEast();
         this.firstRegionSW = firstRectangle.getBounds().getSouthWest();
@@ -105,7 +105,7 @@ export class RegionselectComponent implements OnInit {
     }
   }
 
-  onSubmit(){
+  onSubmit() {
     debugger;
 
     //Push regions into array and send to endpoint.
