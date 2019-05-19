@@ -14,6 +14,19 @@ export class VehicleService {
     return resp;
   }
 
+  async addVehicle(vehicle: Vehicle) {
+    debugger;
+    let body = new URLSearchParams();
+    body.set('vehicle', JSON.stringify(vehicle));
+
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+
+    const resp = await this.http.post<boolean>('movementRegistration/deploy/v1/registration/vehicle', body.toString(), options).toPromise();
+    return resp;
+  }
+
   async linkUserToVehicle(userId: number, vehicleChassis: string): Promise<boolean> {
     const url = `userSystem/deploy/v1/usersystem/${userId}/car/${vehicleChassis}`;
 

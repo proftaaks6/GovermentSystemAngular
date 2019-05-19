@@ -11,13 +11,17 @@ import {MarkerManager} from "@agm/core";
 import { ShowVehiclesComponent } from './show-vehicles/show-vehicles.component';
 import { VehicleComponent } from './vehicle.component';
 import { LinkToUserComponent } from './link-to-user/link-to-user.component';
+import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+import { NumberOnlyDirective } from "../../models/number.directive";
 
 @NgModule({
   declarations: [
     ShowVehiclesComponent,
+    NumberOnlyDirective,
     RoutemapComponent,
     VehicleComponent,
-    LinkToUserComponent
+    LinkToUserComponent,
+    AddVehicleComponent
   ],
   imports: [
     CommonModule,
