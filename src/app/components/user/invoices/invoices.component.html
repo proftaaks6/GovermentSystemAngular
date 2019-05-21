@@ -1,0 +1,37 @@
+<div>
+  <h3>Invoices</h3>
+  <table class="table" style="width: 100%">
+    <thead>
+      <tr>
+        <th scope="col"> Date
+        </th>
+        <th scope="col"> Distance
+        </th>
+        <th scope="col"> Price
+        </th>
+        <th scope="col"> Paid
+        </th>
+        <th scope="col"> Routes
+        </th>
+        <th scope="col"> Recalculate
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of invoices">
+        <td>{{invoice.date}}</td>
+        <td>{{invoice.totalDistance}}</td>
+        <td>{{invoice.totalPrice}}</td>
+        <td>
+          <i *ngIf="!invoice.isPaid" class="fas fa-times" aria-hidden="true"></i>
+          <i *ngIf="invoice.isPaid" class="fas fa-check" aria-hidden="true"></i>
+        </td>
+        <td>{{invoice.routes.length}}</td>
+        <td>
+          <i *ngIf="!invoice.isPaid" (click)="regenerate(invoice.id)" class="fas fa-redo" aria-hidden="true"></i>
+          <i *ngIf="invoice.isPaid" class="fas fa-times" aria-hidden="true"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
