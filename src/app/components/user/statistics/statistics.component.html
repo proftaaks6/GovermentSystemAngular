@@ -1,0 +1,19 @@
+<div>
+  <h3>Login attempts</h3>
+  <table class="table" style="width: 100%">
+    <thead>
+      <tr>
+        <th scope="col"> Date
+        </th>
+        <th scope="col"> Success
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let loginAttempt of loginAttempts">
+        <td>{{loginAttempt.date}}</td>
+        <td>{{loginAttempt.address}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators/map';
 import { ClientUser } from '../models/clientUser.model';
+import { LoginAttempt } from '../models/loginAttempt.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -24,5 +25,13 @@ export class UserService {
 
     async getAll(): Promise<ClientUser[]> {
       return await this.http.get<ClientUser[]>('userSystem/deploy/v1/usersystem/users').toPromise();
+    }
+
+    async getUserById(id: number): Promise<ClientUser> {
+      return this.http.get<ClientUser>(`userSystem/deploy/v1/usersystem/users/${id}`).toPromise();
+    }
+
+    async getLoginAttempts(id: number): Promise<LoginAttempt[]> {
+      return this.http.get<LoginAttempt[]>(`driverApplication/deploy/v1/driverapplication/${id}`).toPromise();
     }
 }

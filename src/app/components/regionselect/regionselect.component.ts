@@ -106,8 +106,6 @@ export class RegionselectComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
-
     //Push regions into array and send to endpoint.
     this.regions.push(new Region(this.firstRegionNE, this.firstRegionSW, this.tax_cost_1));
     this.regions.push(new Region(this.secondRegionNE, this.secondRegionSW, this.tax_cost_2));
