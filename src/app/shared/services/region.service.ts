@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { ClientUser } from "../models/clientUser.model";
 
 import {Region} from "../../models/region.model";
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class RegionService {
@@ -15,6 +16,6 @@ export class RegionService {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     };
 
-    return await this.http.post<ClientUser>('governmentAdmin/deploy/v1/region', body.toString(), options).toPromise();
+    return await this.http.post<ClientUser>(environment.governmentAdminUrl + 'region', body.toString(), options).toPromise();
   }
 }

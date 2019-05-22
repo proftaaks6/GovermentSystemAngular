@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class AuthenticationService {
     body.set('username', username);
     body.set('password', password);
 
-    return this.http.post<any>('/governmentAdmin/deploy/v1/auth/login',
+    return this.http.post<any>(environment.governmentAdminUrl + 'auth/login',
       body.toString(), {
         headers,
         observe: 'response'
