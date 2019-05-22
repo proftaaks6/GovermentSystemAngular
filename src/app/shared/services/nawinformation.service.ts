@@ -107,6 +107,6 @@ export class NawinformationService {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
 
-    return await this.http.post('governmentAdmin/deploy/v1/government/user', body.toString(), options).toPromise();
+    return await this.http.post(environment.governmentAdminUrl + 'government/user', body.toString(), options).toPromise();
   }
 }
