@@ -25,12 +25,19 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    npm test
-    ng build --prod
-  displayName: 'npm install and build'
+    jasmine test --reporter JUnitXmlReporter
+  displayName: 'npm test'
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testRunner: JUnit
+    testResultsFiles: '**/TEST-RESULTS.xml'
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
+- script: |
+    ng build --prod
+  displayName: 'npm install and build'
 - task: Docker@2
   displayName: 'login with carlotheunissen dockerhub'
   inputs:
