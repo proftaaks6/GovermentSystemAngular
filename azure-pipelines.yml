@@ -14,27 +14,10 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'SonarCloud'
-    organization: 'proftaaks6'
-    scannerMode: 'Other'
-    cliProjectKey: 'proftaaks6_GovermentSystemAngular'
-    projectKey: 'proftaaks6_GovermentSystemAngular'
-    extraProperties: 'sonar.projectKey=proftaaks6_GovermentSystemAngular'
 - script: |
     npm install -g @angular/cli
     npm install
-    jasmine test --reporter JUnitXmlReporter
-  displayName: 'npm test'
-- task: PublishTestResults@2
-  condition: succeededOrFailed()
-  inputs:
-    testRunner: JUnit
-    testResultsFiles: '**/TEST-RESULTS.xml'
-- task: SonarCloudPublish@1
-  inputs:
-    pollingTimeoutSec: '300'
+  displayName: 'npm install'
 - script: |
     ng build --prod
   displayName: 'npm install and build'
