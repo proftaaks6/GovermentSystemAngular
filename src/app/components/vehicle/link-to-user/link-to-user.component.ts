@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Vehicle } from 'src/app/models/vehicle.model';
-import { ClientUser } from 'src/app/shared/models/clientUser';
+import { Vehicle } from 'src/app/shared/models/vehicle.model';
+import { ClientUser } from 'src/app/shared/models/clientUser.model';
 import { UserService } from 'src/app/shared/services/user.service';
 import { VehicleService } from 'src/app/shared/services/vehicle.service';
 
@@ -14,7 +14,7 @@ export class LinkToUserComponent implements OnInit {
   vehicles: Vehicle[];
   users: ClientUser[];
 
-  selectedVehicleId: number;
+  selectedVehicleChassis: string;
   selectedUserId: number;
 
   success = false;
@@ -26,12 +26,14 @@ export class LinkToUserComponent implements OnInit {
   async ngOnInit() {
     // Load cars and users
     // @ts-ignore
-    this.vehicles = this.vehicleService.getVehicles();
+    this.vehicles = await this.vehicleService.getVehicles();
     this.users = await this.userService.getAll();
+
+    console.log(this.vehicles, this.users);
   }
 
   async onSubmit() {
-    if (!(this.selectedUserId && this.selectedVehicleId)) {
+    if (!(this.selectedUserId && this.selectedVehicleChassis)) {
       // Form not filled
       this.error = true;
       return;
@@ -40,9 +42,9 @@ export class LinkToUserComponent implements OnInit {
     this.success = false;
     this.error = false;
     
-    if (await this.vehicleService.linkUserToVehicle(this.selectedUserId, this.selectedVehicleId)) {
+    if (await this.vehicleService.linkUserToVehicle(this.selectedUserId, this.selectedVehicleChassis)) {
       this.selectedUserId = undefined;
-      this.selectedVehicleId = undefined;
+      this.selectedVehicleChassis = undefined;
       this.success = true;
     } else {
       this.error = true;

@@ -1,0 +1,13 @@
+<div class="container">
+  <br/>
+  <h1>{{user.name}}</h1>
+  <br/>
+  <div class="row">
+    <div class="col">
+      <app-statistics [loginAttempts]="loginAttempts"></app-statistics>
+    </div>
+    <div class="col">
+      <app-invoices [invoices]="invoices"></app-invoices>
+    </div>
+  </div>
+</div>

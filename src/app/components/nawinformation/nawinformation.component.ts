@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NawinformationService} from "../../shared/services/nawinformation.service";
-import {NAWInformationModel} from "../../models/nawinformation.model";
+import {NAWInformationModel} from "../../shared/models/nawinformation.model";
 import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import {first} from "rxjs/operators";
 import {__values} from "tslib";
@@ -21,25 +21,21 @@ export class NawinformationComponent implements OnInit {
     }
 
     ngOnInit() {
+      // In de toekomst wordt dit de huidige ingelogde user
       // @ts-ignore
       this.user = this.nawinformationService.getNAWInformation(8318);
-      this.registerForm = this.formBuilder.group({
-        firstname: ['', Validators.required],
-        surname: ['', Validators.required],
-        country: ['', Validators.required],
-        city: ['', [Validators.required, Validators.minLength(6)]],
-        street: ['', Validators.required],
-        housenumber: ['', Validators.required],
-        zipcode: ['', Validators.required]
-      });
 
-      this.registerForm.controls['firstname'].setValue(this.user.firstname);
-      this.registerForm.controls['surname'].setValue(this.user.surname);
-      this.registerForm.controls['country'].setValue(this.user.country);
-      this.registerForm.controls['city'].setValue(this.user.city);
-      this.registerForm.controls['street'].setValue(this.user.street);
-      this.registerForm.controls['housenumber'].setValue(this.user.housenumber);
-      this.registerForm.controls['zipcode'].setValue(this.user.zipcode);
+      this.registerForm = this.formBuilder.group({
+        name: ['', Validators.required],
+        address: ['', Validators.required],
+        residence: ['', Validators.required],
+        email: ['', [Validators.required]
+      ]});
+
+      this.registerForm.controls['name'].setValue(this.user.name);
+      this.registerForm.controls['address'].setValue(this.user.address);
+      this.registerForm.controls['residence'].setValue(this.user.residence);
+      this.registerForm.controls['email'].setValue(this.user.email);
     }
 
     get f() { return this.registerForm.controls; }

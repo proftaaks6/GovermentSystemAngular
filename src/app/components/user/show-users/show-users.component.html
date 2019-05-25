@@ -1,0 +1,27 @@
+<div class="container">
+  <br/>
+  <h1>Users</h1>
+  <br/>
+  <table class="table" style="width: 100%">
+    <thead>
+      <tr>
+        <th scope="col"> Name
+        </th>
+        <th scope="col"> Address
+        </th>
+        <th scope="col"> Residence
+        </th>
+        <th scope="col"> Email
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users" (click)="goToUser(user.id)">
+        <td>{{user.name}}</td>
+        <td>{{user.address}}</td>
+        <td>{{user.residence}}</td>
+        <td>{{user.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

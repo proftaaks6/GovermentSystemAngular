@@ -1,0 +1,45 @@
+<html>
+<body>
+
+<div class="container">
+  <br/>
+  <h1>Fill in vehicle information and add it:</h1>
+  <br/>
+
+  <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+    <h3>Select vehicle type:</h3>
+    <div class="form-group">
+      <select type="text" [(ngModel)]="type" name="type" id="type" class="form-control">
+        <option value="BIG_TRUCK">Big Truck</option>
+        <option value="SMALL_TRUCK">Small Truck</option>
+        <option value="CAR">Car</option>
+        <option value="BUS">Bus</option>
+        <option value="MOTOR">Motorbike</option>
+      </select>
+    </div>
+
+    <h3>Enter chassis number:</h3>
+    <div class="form-group">
+      <input placeholder="Like '48asd61184das61'" type="text" [(ngModel)]="chassis_number" name="chassis_number" id="chassis_number" class="form-control">
+    </div>
+
+    <h3>Enter a fuel type:</h3>
+    <div class="form-group">
+      <select type="text" [(ngModel)]="fuel" name="fuel" id="fuel" class="form-control">
+        <option value="DIESEL">Diesel</option>
+        <option value="GASOLINE">Gasoline</option>
+        <option value="GAS">Gas</option>
+      </select>
+    </div>
+
+    <h3>Enter the car's emission rate:</h3>
+    <div class="form-group">
+      <input myNumberOnly placeholder="Value in g/km" type="text" [(ngModel)]="emission" name="emission" id="emission" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-success" style="width:100%">Add vehicle</button>
+
+  </form>
+</div>
+</body>
+</html>

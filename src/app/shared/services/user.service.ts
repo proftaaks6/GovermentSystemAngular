@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators/map';
-import { ClientUser } from '../models/clientUser';
+import { ClientUser } from '../models/clientUser.model';
+import { LoginAttempt } from '../models/loginAttempt.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -19,10 +21,19 @@ export class UserService {
         headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       };
 
-      return await this.http.post<ClientUser>('governmentAdmin/deploy/v1/government/user', body.toString(), options).toPromise();
+      return await this.http.post<ClientUser>(environment.userSystemUrl + 'usersystem/userInfo', body.toString(), options).toPromise();
     } 
 
     async getAll(): Promise<ClientUser[]> {
-      return await this.http.get<ClientUser[]>('governmentAdmin/deploy/v1/government/users').toPromise();
+      console.log(environment.userSystemUrl + 'usersystem/users');
+      return await this.http.get<ClientUser[]>(environment.userSystemUrl + 'usersystem/users').toPromise();
+    }
+
+    async getUserById(id: number): Promise<ClientUser> {
+      return this.http.get<ClientUser>(environment.userSystemUrl + `usersystem/users/${id}`).toPromise();
+    }
+
+    async getLoginAttempts(id: number): Promise<LoginAttempt[]> {
+      return this.http.get<LoginAttempt[]>(environment.driverApplicationUrl + `driverapplication/${id}`).toPromise();
     }
 }

@@ -4,16 +4,24 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule }   from '@angular/forms';
 
 import { HttpClientModule} from '@angular/common/http';
-import {VehicleComponent} from "./vehicle.component";
 import {VehicleRoutingModule} from "./vehicle-routing.module";
 import { RoutemapComponent } from './routemap/routemap.component';
 import {AgmCoreModule, GoogleMapsAPIWrapper} from "@agm/core";
 import {MarkerManager} from "@agm/core";
+import { ShowVehiclesComponent } from './show-vehicles/show-vehicles.component';
+import { VehicleComponent } from './vehicle.component';
+import { LinkToUserComponent } from './link-to-user/link-to-user.component';
+import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+import { NumberOnlyDirective } from "../../models/number.directive";
 
 @NgModule({
   declarations: [
+    ShowVehiclesComponent,
+    NumberOnlyDirective,
+    RoutemapComponent,
     VehicleComponent,
-    RoutemapComponent
+    LinkToUserComponent,
+    AddVehicleComponent
   ],
   imports: [
     CommonModule,
