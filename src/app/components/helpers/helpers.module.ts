@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { NumberOnlyDirective } from 'src/app/models/number.directive';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    NumberOnlyDirective],
   imports: [
-    CommonModule,
-    NumberOnlyDirective
+    CommonModule
   ]
 })
 export class HelpersModule { }
