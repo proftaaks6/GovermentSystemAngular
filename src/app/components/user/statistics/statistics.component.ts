@@ -12,7 +12,7 @@ import { LoginAttempt } from 'src/app/shared/models/loginAttempt.model';
 export class StatisticsComponent implements OnInit {
 
   @Input()
-  private loginAttempts: LoginAttempt[];
+  loginAttempts: LoginAttempt[];
 
   constructor() { }
 

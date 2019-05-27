@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor(private authService: AuthenticationService) { }
+  constructor(public authService: AuthenticationService) { }
 
   ngOnInit() {
 
