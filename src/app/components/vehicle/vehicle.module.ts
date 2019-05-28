@@ -12,12 +12,11 @@ import { ShowVehiclesComponent } from './show-vehicles/show-vehicles.component';
 import { VehicleComponent } from './vehicle.component';
 import { LinkToUserComponent } from './link-to-user/link-to-user.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
-import { NumberOnlyDirective } from "../../models/number.directive";
+import { HelpersModule } from '../helpers/helpers.module';
 
 @NgModule({
   declarations: [
     ShowVehiclesComponent,
-    NumberOnlyDirective,
     RoutemapComponent,
     VehicleComponent,
     LinkToUserComponent,
@@ -31,7 +30,8 @@ import { NumberOnlyDirective } from "../../models/number.directive";
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBhFnZsG5KqWljfwifxQf-OXVHgSZY-_-c'
-    })
+    }),
+    HelpersModule
   ],
   entryComponents: [
     RoutemapComponent

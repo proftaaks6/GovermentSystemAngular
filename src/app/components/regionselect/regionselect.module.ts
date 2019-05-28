@@ -6,12 +6,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {AgmCoreModule, GoogleMapsAPIWrapper} from "@agm/core";
-import { NumberOnlyDirective } from "../../models/number.directive";
+import { HelpersModule } from '../helpers/helpers.module';
 
 @NgModule({
 
   providers: [GoogleMapsAPIWrapper],
-  declarations: [RegionselectComponent, NumberOnlyDirective],
+  declarations: [RegionselectComponent],
   imports: [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBJ75KHIHKCbbKLZsQpYv5xGHTPA3gOHfg',
@@ -21,7 +21,8 @@ import { NumberOnlyDirective } from "../../models/number.directive";
     RegionselectRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    HelpersModule
   ]
 })
 export class RegionselectModule { }
