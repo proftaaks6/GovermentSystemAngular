@@ -3,6 +3,7 @@ import {Vehicle} from "../../../shared/models/vehicle.model";
 import {VehicleService} from "../../../shared/services/vehicle.service";
 import {RegionService} from "../../../shared/services/region.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {JsonVehicle} from "../../../shared/models/jsonvehicle.model";
 
 @Component({
   selector: 'app-add-vehicle',
@@ -23,14 +24,12 @@ export class AddVehicleComponent implements OnInit {
 
   onSubmit() {
     debugger;
-    var vehicle: Vehicle = {
+    var vehicle: JsonVehicle = {
       id: null,
       vehicleType: "",
       chassisNumber: "",
       fuelType: "",
-      emission: "",
-      activeTracker: null,
-      trackers: null
+      emission: ""
     };
 
     vehicle.vehicleType = this.type;

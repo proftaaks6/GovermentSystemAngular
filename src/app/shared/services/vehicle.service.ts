@@ -3,6 +3,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Vehicle } from 'src/app/shared/models/vehicle.model';
 import { LocationPoint } from 'src/app/shared/models/locationPoint.model';
+import {JsonVehicle} from "../models/jsonvehicle.model";
 
 @Injectable({providedIn: 'root'})
 export class VehicleService {
@@ -14,8 +15,12 @@ export class VehicleService {
     return resp;
   }
 
-  async addVehicle(vehicle: Vehicle) {
-    const resp = await this.http.post<boolean>(environment.movementRegistrationUrl + 'registration/vehicle', vehicle).toPromise();
+  async addVehicle(vehicle: JsonVehicle) {
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    };
+
+    const resp = await this.http.post<boolean>(environment.movementRegistrationUrl + 'registration/vehicle', JSON.stringify(vehicle), options).toPromise();
     return resp;
   }
 
