@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Vehicle } from 'src/app/models/vehicle.model';
-import { ClientUser } from 'src/app/shared/models/clientUser';
+import { Vehicle } from 'src/app/shared/models/vehicle.model';
+import { ClientUser } from 'src/app/shared/models/clientUser.model';
 import { UserService } from 'src/app/shared/services/user.service';
 import { VehicleService } from 'src/app/shared/services/vehicle.service';
 
@@ -26,8 +26,10 @@ export class LinkToUserComponent implements OnInit {
   async ngOnInit() {
     // Load cars and users
     // @ts-ignore
-    this.vehicles = this.vehicleService.getVehicles();
+    this.vehicles = await this.vehicleService.getVehicles();
     this.users = await this.userService.getAll();
+
+    console.log(this.vehicles, this.users);
   }
 
   async onSubmit() {

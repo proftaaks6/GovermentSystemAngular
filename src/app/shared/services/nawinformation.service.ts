@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import { Observable } from 'rxjs'
-import {NAWInformationModel} from "../../models/nawinformation.model";
-import {environment} from "../../../environments/environment";
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { NAWInformationModel } from "../models/nawinformation.model";
+import { environment } from "../../../environments/environment";
 
 const users = [
   {
@@ -91,21 +91,22 @@ const users = [
 export class NawinformationService {
   constructor(private http: HttpClient) { }
 
-  getNAWInformation(id: number){
+  getNAWInformation(id: number) {
     return users.filter(x => x._id === id)[0];
   }
 
-  async changeNAWInformation(naw: NAWInformationModel){
+  async changeNAWInformation(nawinformation: NAWInformationModel) {
+    console.log(nawinformation);
     let body = new URLSearchParams();
-    body.set('name', naw.name);
-    body.set('address', naw.address);
-    body.set('residence', naw.residence);
-    body.set('email', naw.email);
+    body.set('name', nawinformation.name);
+    body.set('address', nawinformation.address);
+    body.set('residence', nawinformation.residence);
+    body.set('email', nawinformation.email);
 
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
 
-    return await this.http.post('governmentAdmin/deploy/v1/government/user', body.toString(), options);
+    return await this.http.post(environment.governmentAdminUrl + 'government/user', body.toString(), options).toPromise();
   }
 }

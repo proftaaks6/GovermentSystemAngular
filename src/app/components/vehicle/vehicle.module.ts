@@ -10,12 +10,17 @@ import {AgmCoreModule, GoogleMapsAPIWrapper} from "@agm/core";
 import {MarkerManager} from "@agm/core";
 import { ShowVehiclesComponent } from './show-vehicles/show-vehicles.component';
 import { VehicleComponent } from './vehicle.component';
+import { LinkToUserComponent } from './link-to-user/link-to-user.component';
+import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+import { HelpersModule } from '../helpers/helpers.module';
 
 @NgModule({
   declarations: [
     ShowVehiclesComponent,
     RoutemapComponent,
-    VehicleComponent
+    VehicleComponent,
+    LinkToUserComponent,
+    AddVehicleComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +30,8 @@ import { VehicleComponent } from './vehicle.component';
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBhFnZsG5KqWljfwifxQf-OXVHgSZY-_-c'
-    })
+    }),
+    HelpersModule
   ],
   entryComponents: [
     RoutemapComponent
