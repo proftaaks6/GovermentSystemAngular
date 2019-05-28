@@ -9,9 +9,12 @@ import { environment } from 'src/environments/environment';
 export class CartrackerService {
     constructor(private http: HttpClient) { }
 
-    createTracker(): Observable<any> {
-      const payload = new HttpParams();
-      return this.http.post<any>(environment.movementRegistrationUrl + 'registration/tracker', { })
+    async createTracker(): Promise<boolean> {
+      await this.http.post<any>(environment.movementRegistrationUrl + 'registration/tracker', { })
+        .toPromise()
+        .catch(() => { return false });
+
+      return true;
     }
 
     async getAll(): Promise<Tracker[]> {

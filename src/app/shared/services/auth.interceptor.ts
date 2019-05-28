@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let token = localStorage.getItem('currentUser');
-    console.log(environment.production);
     request = request.clone({
       url: environment.baseUrl + request.url,
       setHeaders: token 

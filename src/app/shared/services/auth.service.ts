@@ -8,15 +8,14 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private currentUserSubject: BehaviorSubject<String>;
-  public currentUser: Observable<String>;
+  private currentUserSubject: BehaviorSubject<string>;
+  public currentUser: Observable<string>;
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<String>(localStorage.getItem('currentUser'));
-    console.log(this.currentUserSubject);
+    this.currentUserSubject = new BehaviorSubject<string>(localStorage.getItem('currentUser'));
     this.currentUser = this.currentUserSubject.asObservable();
   }
-  public get currentUserValue(): String {
+  public get currentUserValue(): string {
     return this.currentUserSubject.value;
   }
 
@@ -25,7 +24,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    console.log(+ password)
+    console.log(username, password);
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
     });

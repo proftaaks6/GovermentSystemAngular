@@ -1,5 +1,8 @@
 <div style="margin-left:30%;margin-right:30%">
   <h2>Login</h2>
+  <div *ngIf="error" class="alert alert-danger" role="alert">
+    The combination you provided wasn't found
+  </div>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="username">Username</label>

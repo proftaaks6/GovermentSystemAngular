@@ -7,16 +7,23 @@ import { CartrackerService } from '../../../shared/services/cartracker.service'
   templateUrl: './insert-cartracker.component.html',
 })
 export class InsertCartrackerComponent {
+  error = false;
+  success = false;
 
   constructor(private cartrackerService: CartrackerService) {
 
   }
 
-  onSubmit() {
-    this.cartrackerService.createTracker().subscribe((result) => {
-      // console.log(result);
-      location.reload();
-    });
+  async onSubmit() {
+    this.error = false;
+    this.success = false;
+
+    let result = await this.cartrackerService.createTracker();
+    if (result) {
+      this.success = true;
+    } else {
+      this.error = true;
+    }
   }
 
 

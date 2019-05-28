@@ -24,6 +24,12 @@ export class InsertUserComponent implements OnInit {
   async onSubmit() {
     this.success = false;
     this.error = false;
+
+    if (!this.name || !this.email || !this.address || !this.residence) {
+      this.error = true;
+      return;
+    }
+
     try {
       await this.userService.saveNewUser(this.name, this.email, this.address, this.residence);
       this.success = true;
