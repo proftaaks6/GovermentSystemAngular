@@ -9,7 +9,7 @@ export const environment = {
   userSystemUrl: 'UserSystem/v1/',
   invoiceSystemUrl: 'InvoiceSystem/v1/',
   governmentAdminUrl: 'GovernmentAdmin/v1/',
-  driverApplicationUrl: 'DriverApplication/v1',
+  driverApplicationUrl: 'DriverSystem/v1/',
 };
 
 /*

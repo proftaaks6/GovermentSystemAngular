@@ -22,10 +22,13 @@ export class UserInfoComponent implements OnInit {
     private invoiceService: InvoiceService) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(async params => {
+    this.route.params.subscribe(async params => {
       this.user = await this.userService.getUserById(params.id);
       this.loginAttempts = await this.userService.getLoginAttempts(this.user.id);
-      this.invoices = await this.invoiceService.getForVehicles(this.user.ownedVehicleIds);
+
+      this.invoices = this.user.ownedVehicleIds.length > 0
+        ? await this.invoiceService.getForVehicles(this.user.ownedVehicleIds)
+        : [];
     });
   }
 
