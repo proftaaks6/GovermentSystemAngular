@@ -16,6 +16,10 @@ export class RegionService {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     };
 
-    return await this.http.post<ClientUser>(environment.governmentAdminUrl + 'region', body.toString(), options).toPromise();
+    return await this.http.post<ClientUser>(environment.invoiceSystemUrl + 'region', body.toString(), options).toPromise();
+  }
+
+  async getRegions(): Promise<Region[]> {
+    return await this.http.get<Region[]>(environment.invoiceSystemUrl + 'region').toPromise();
   }
 }

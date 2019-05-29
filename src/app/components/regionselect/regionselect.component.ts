@@ -85,21 +85,29 @@ export class RegionselectComponent implements OnInit {
       case 1: {
         this.firstRegionNE = firstRectangle.getBounds().getNorthEast();
         this.firstRegionSW = firstRectangle.getBounds().getSouthWest();
+        document.getElementById("topLeft1").innerText = "lng" + (Math.round(this.firstRegionNE.lng()*1000)/1000).toString() + "/lat" + (Math.round(this.firstRegionNE.lat()*1000)/1000).toString();
+        document.getElementById("bottomRight1").innerText = "lng" + (Math.round(this.firstRegionSW.lng()*1000)/1000).toString() + "/lat" + (Math.round(this.firstRegionSW.lat()*1000)/1000).toString();
         break;
       }
       case 2: {
         this.secondRegionNE = firstRectangle.getBounds().getNorthEast();
         this.secondRegionSW = firstRectangle.getBounds().getSouthWest();
+        document.getElementById("topLeft2").innerText = "lng" + (Math.round(this.secondRegionNE.lng()*1000)/1000).toString() + "/lat" + (Math.round(this.secondRegionNE.lat()*1000)/1000).toString();
+        document.getElementById("bottomRight2").innerText = "lng" + (Math.round(this.secondRegionSW.lng()*1000)/1000).toString() + "/lat" + (Math.round(this.secondRegionSW.lat()*1000)/1000).toString();
         break;
       }
       case 3: {
         this.thirdRegionNE = firstRectangle.getBounds().getNorthEast();
         this.thirdRegionSW = firstRectangle.getBounds().getSouthWest();
+        document.getElementById("topLeft3").innerText = "lng" + (Math.round(this.thirdRegionNE.lng()*1000)/1000).toString() + "/lat" + (Math.round(this.thirdRegionNE.lat()*1000)/1000).toString();
+        document.getElementById("bottomRight3").innerText = "lng" + (Math.round(this.thirdRegionSW.lng()*1000)/1000).toString() + "/lat" + (Math.round(this.thirdRegionSW.lat()*1000)/1000).toString();
         break;
       }
       case 4: {
         this.fourthRegionNE = firstRectangle.getBounds().getNorthEast();
         this.fourthRegionSW = firstRectangle.getBounds().getSouthWest();
+        document.getElementById("topLeft4").innerText = "lng" + (Math.round(this.fourthRegionNE.lng()*1000)/1000).toString() + "/lat" + (Math.round(this.fourthRegionNE.lat()*1000)/1000).toString();
+        document.getElementById("bottomRight4").innerText = "lng" + (Math.round(this.fourthRegionSW.lng()*1000)/1000).toString() + "/lat" + (Math.round(this.fourthRegionSW.lat()*1000)/1000).toString();
         break;
       }
     }
@@ -116,6 +124,20 @@ export class RegionselectComponent implements OnInit {
 
     //Clear list afterwards.
     this.regions = [];
+  }
+
+  addRegion(){
+    if(document.getElementById("region2").classList.contains("hidden")){
+        document.getElementById("region2").classList.toggle("hidden");
+        return;
+    }else if(document.getElementById("region3").classList.contains("hidden")){
+      document.getElementById("region3").classList.toggle("hidden");
+      return;
+    }else if(document.getElementById("region4").classList.contains("hidden")){
+      document.getElementById("region4").classList.toggle("hidden");
+      document.getElementById("addRegion").classList.add("hidden");
+      return;
+    }
   }
 
 }
