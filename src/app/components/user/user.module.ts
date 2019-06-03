@@ -10,9 +10,10 @@ import { UserComponent } from './user.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { InvoicesComponent } from './invoices/invoices.component';
+import { ChangeUserComponent } from './change-user/change-user.component';
 
 @NgModule({
-  declarations: [InsertUserComponent, ShowUsersComponent, UserComponent, StatisticsComponent, UserInfoComponent, InvoicesComponent],
+  declarations: [InsertUserComponent, ShowUsersComponent, UserComponent, StatisticsComponent, UserInfoComponent, InvoicesComponent, ChangeUserComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
