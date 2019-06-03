@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
 export class RegionService {
   constructor(private http: HttpClient) { }
 
-  async setRegions(regions: Region[]): Promise<ClientUser> {
-    let body = JSON.stringify(regions);
+  async addRegion(region: Region): Promise<ClientUser> {
+    let body = JSON.stringify(region);
 
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/json')

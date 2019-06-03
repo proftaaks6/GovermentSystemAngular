@@ -6,72 +6,44 @@
     <h1>Please select your preferred tax regions:</h1>
     <br/>
 
-    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
-      <h3>Region 1:</h3>
-      <div class="form-group">
-        <label for="tax_cost_1">Tax cost:</label>
-        <input myNumberOnly type="text" [(ngModel)]="tax_cost_1" name="tax_cost" id="tax_cost_1" class="form-control">
-        <div style="display: flex">
-          <label>Top left:&nbsp;</label>
-          <p id="topLeft1" style="color: limegreen"></p>
-          <label style="margin-left: 50px;">Bottom right:&nbsp;</label>
-          <p id="bottomRight1" style="color: limegreen"></p>
-        </div>
-        <a class="btn btn-success" style="margin-top: 10px" (click)="setCoords(1)">Set this region</a>
-      </div>
-
-      <div class="hidden" id="region2">
-        <h3>Region 2:</h3>
+    <div style="display: flex;">
+      <form style="width: 100%; padding-right: 20px" (ngSubmit)="onSubmit()" #heroForm="ngForm">
+        <h3>Region 1:</h3>
         <div class="form-group">
-          <label for="tax_cost_2">Tax cost:</label>
-          <input myNumberOnly type="text" [(ngModel)]="tax_cost_2" name="tax_cost" id="tax_cost_2" class="form-control">
+          <label for="tax_cost_1">Tax cost:</label>
+          <input myNumberOnly type="text" [(ngModel)]="tax_cost_1" name="tax_cost" id="tax_cost_1" class="form-control">
           <div style="display: flex">
             <label>Top left:&nbsp;</label>
-            <p id="topLeft2" style="color: limegreen"></p>
+            <p id="topLeft1" style="color: limegreen"></p>
             <label style="margin-left: 50px;">Bottom right:&nbsp;</label>
-            <p id="bottomRight2" style="color: limegreen"></p>
+            <p id="bottomRight1" style="color: limegreen"></p>
           </div>
-          <a class="btn btn-success" style="margin-top: 10px" (click)="setCoords(2)">Set this region</a>
-        </div>
-      </div>
-
-      <div class="hidden" id="region3">
-        <h3>Region 3:</h3>
-        <div class="form-group">
-          <label for="tax_cost_3">Tax cost:</label>
-          <input myNumberOnly type="text" [(ngModel)]="tax_cost_3" name="tax_cost" id="tax_cost_3" class="form-control">
-          <div style="display: flex">
-            <label>Top left:&nbsp;</label>
-            <p id="topLeft3" style="color: limegreen"></p>
-            <label style="margin-left: 50px;">Bottom right:&nbsp;</label>
-            <p id="bottomRight3" style="color: limegreen"></p>
+          <div class="invisible">
+            <p id="regionId"></p>
           </div>
-          <a class="btn btn-success" style="margin-top: 10px" (click)="setCoords(3)">Set this region</a>
+          <a class="btn btn-success" style="margin-top: 10px" (click)="setCoords(1)">Set this region</a>
         </div>
-      </div>
 
-      <div class="hidden" id="region4">
-        <h3>Region 4:</h3>
-        <div class="form-group">
-          <label for="tax_cost_4">Tax cost:</label>
-          <input myNumberOnly type="text" [(ngModel)]="tax_cost_4" name="tax_cost" id="tax_cost_4" class="form-control">
-          <div style="display: flex">
-            <label>Top left:&nbsp;</label>
-            <p id="topLeft4" style="color: limegreen"></p>
-            <label style="margin-left: 50px;">Bottom right:&nbsp;</label>
-            <p id="bottomRight4" style="color: limegreen"></p>
-          </div>
-          <a class="btn btn-success" style="margin-top: 10px" (click)="setCoords(4)">Set this region</a>
+        <div style="display: flex; margin-top: 40px">
+          <button id="submitButton" type="submit" class="btn btn-success" style="">Update region</button>
         </div>
-      </div>
 
-      <div style="display: flex; margin-top: 40px">
-        <button (click)="addRegion()" id="addRegion" style="margin-right: 10px" class="btn btn-success">Add region</button>
-        <button type="submit" class="btn btn-success" style="">Update regions</button>
+      </form>
+      <table class="table" style="width: 100%">
+        <thead>
+        <tr>
+          <th scope="col"> Existing regions
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let region of regions" (click)="showRegion(region)">
+          <td>{{"Top Left: " + region.topLeftLat.toString().substring(0, 6) + "/" + region.topLeftLong.toString().substring(0, 6) + " Bottom Right: " + region.bottomRightLat.toString().substring(0, 6) + "/" + region.bottomRightLong.toString().substring(0, 6)}}</td>
+        </tr>
+        </tbody>
+      </table>
 
-      </div>
-
-    </form>
+    </div>
   </div>
   <br/>
   <p style="text-align: center; color: red">Be advised that previous regions will be overwritten by new ones.</p>

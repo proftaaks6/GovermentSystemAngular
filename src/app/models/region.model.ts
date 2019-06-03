@@ -1,13 +1,19 @@
 import {LatLng} from "@agm/core";
 
 export class Region {
-  topLeft: LatLng;
-  bottomRight: LatLng;
+  id: number;
+  topLeftLat: number;
+  topLeftLong: number;
+  bottomRightLat: number;
+  bottomRightLong: number;
   taxRate: number;
 
-  constructor(topLeft: LatLng, bottomRight: LatLng, taxRate: number){
-    this.topLeft = topLeft;
-    this.bottomRight = bottomRight;
+  constructor(id: number, topLeftLat: number, topLeftLong: number, bottomRightLat: number, bottomRightLong: number, taxRate: number) {
+    this.id = id;
+    this.topLeftLat = topLeftLat;
+    this.topLeftLong = topLeftLong;
+    this.bottomRightLat = bottomRightLat;
+    this.bottomRightLong = bottomRightLong;
     this.taxRate = taxRate;
   }
 }
