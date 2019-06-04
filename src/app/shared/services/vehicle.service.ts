@@ -1,4 +1,4 @@
-import {environment} from "../../../environments/environment";
+import {environment} from 'src/environments/environment';
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Vehicle } from 'src/app/shared/models/vehicle.model';
@@ -40,10 +40,8 @@ export class VehicleService {
     return await this.http.get<LocationPoint[]>(url).toPromise();
   }
 
-  async getLocationPointsOfVehicle(id: number, from: Date, to: Date): Promise<LocationPoint[]> {
-    const url = environment.movementRegistrationUrl + `registration/vehicle/${id}/points/from/${from.valueOf()}/to/${to.valueOf()}`;
-
-    console.log(url);
+  async getLocationPointsOfVehicle(chassis: string, from: Date, to: Date): Promise<LocationPoint[]> {
+    const url = environment.movementRegistrationUrl + `registration/vehicle/${chassis}/points/from/${from.valueOf()}/to/${to.valueOf()}`;
 
     return await this.http.get<LocationPoint[]>(url).toPromise();
   }

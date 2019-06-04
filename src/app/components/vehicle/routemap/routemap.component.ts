@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { LatLngLiteral } from '@agm/core';
 
 @Component({
   selector: 'app-routemap',
@@ -7,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class RoutemapComponent implements OnInit {
 
-  @Input() locations;
+  @Input() paths: Array<LatLngLiteral>;
 
   lat: number = 52.092876;
   long: number = 5.104480;

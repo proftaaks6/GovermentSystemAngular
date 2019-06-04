@@ -26,9 +26,13 @@ export class UserInfoComponent implements OnInit {
       this.user = await this.userService.getUserById(params.id);
       this.loginAttempts = await this.userService.getLoginAttempts(this.user.id);
 
-      this.invoices = this.user.ownedVehicleIds.length > 0
-        ? await this.invoiceService.getForVehicles(this.user.ownedVehicleIds)
+      console.log(this.user);
+
+      this.invoices = this.user.ownedVehicles.length > 0
+        ? await this.invoiceService.getForVehicles(this.user.ownedVehicles)
         : [];
+
+        console.log(this.invoices);
     });
   }
 
