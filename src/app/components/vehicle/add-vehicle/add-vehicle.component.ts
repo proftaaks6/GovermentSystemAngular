@@ -11,6 +11,8 @@ import {JsonVehicle} from "../../../shared/models/jsonvehicle.model";
   styleUrls: ['./add-vehicle.component.css']
 })
 export class AddVehicleComponent implements OnInit {
+  error = false;
+  success = false;
 
   type: string;
   chassis_number: string;
@@ -22,7 +24,7 @@ export class AddVehicleComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
+  async onSubmit() {
     debugger;
     var vehicle: JsonVehicle = {
       id: null,
@@ -38,9 +40,17 @@ export class AddVehicleComponent implements OnInit {
     vehicle.emission = this.emission;
 
     if (vehicle.emission != null && vehicle.fuelType != null && vehicle.chassisNumber != null && vehicle.vehicleType != null) {
-      this.service.addVehicle(vehicle).catch((err: HttpErrorResponse) => {
-        alert("We ran into a problem while trying to add your vehicle, try again later.")
-      });
+      this.error = false;
+      this.success = false;
+      if (await this.service.addVehicle(vehicle)) {
+        this.success = true;
+      } else {
+        this.error = true;
+      }
+
+      // this.service.addVehicle(vehicle).catch((err: HttpErrorResponse) => {
+      //   alert("We ran into a problem while trying to add your vehicle, try again later.")
+      // });
     }
   }
 }

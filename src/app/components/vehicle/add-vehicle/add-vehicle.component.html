@@ -4,6 +4,12 @@
 <div class="container">
   <br/>
   <h1>Fill in vehicle information and add it:</h1>
+  <div *ngIf="error" class="alert alert-danger" role="alert">
+    The operation wasn't succesful
+  </div>
+  <div *ngIf="success" class="alert alert-success" role="alert">
+    The operation was completed succesfully
+  </div>
   <br/>
 
   <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
