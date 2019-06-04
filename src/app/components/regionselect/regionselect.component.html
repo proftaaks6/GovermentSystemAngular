@@ -28,6 +28,10 @@
           <button id="submitButton" type="submit" class="btn btn-success" style="">Update region</button>
         </div>
 
+        <div style="display: flex; margin-top: 40px">
+          <a (click)="onDeleteClick()" id="deleteButton" class="btn btn-success" style="">Delete selected region</a>
+        </div>
+
       </form>
       <table class="table" style="width: 100%">
         <thead>
@@ -46,7 +50,6 @@
     </div>
   </div>
   <br/>
-  <p style="text-align: center; color: red">Be advised that previous regions will be overwritten by new ones.</p>
   <p style="text-align: center">Drag the box and click "Set this region" to update its effective area.</p>
   <div id="map"></div>
   </body>

@@ -190,4 +190,14 @@ export class RegionselectComponent implements OnInit {
     }
   }
 
+  async onDeleteClick(){
+    debugger;
+    if(document.getElementById("regionId").innerHTML == ""){
+      alert("No region is currently selected, please select one from the list on the right.")
+      return;
+    }else{
+      await this.regionService.deleteRegion(+document.getElementById("regionId").innerHTML);
+    }
+  }
+
 }
