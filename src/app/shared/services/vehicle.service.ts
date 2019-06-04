@@ -20,8 +20,10 @@ export class VehicleService {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     };
 
-    const resp = await this.http.post<boolean>(environment.movementRegistrationUrl + 'registration/vehicle', JSON.stringify(vehicle), options).toPromise();
-    return resp;
+    await this.http.post<boolean>(environment.movementRegistrationUrl + 'registration/vehicle', JSON.stringify(vehicle), options)
+      .toPromise()
+      .catch(() => { return false });
+    return true;
   }
 
   async linkUserToVehicle(userId: number, vehicleChassis: string): Promise<boolean> {
