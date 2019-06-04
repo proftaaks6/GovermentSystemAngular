@@ -11,7 +11,7 @@
         </th>
         <th scope="col"> Paid
         </th>
-        <th scope="col"> Routes
+        <th scope="col"> Regions
         </th>
         <th scope="col"> Recalculate
         </th>
@@ -20,15 +20,15 @@
     <tbody>
       <tr *ngFor="let invoice of invoices">
         <td>{{invoice.date}}</td>
-        <td>{{invoice.totalDistance}}</td>
-        <td>{{invoice.totalPrice}}</td>
+        <td>{{invoice.totalDistance | number : '.2'}} km</td>
+        <td>&euro;{{invoice.totalPrice | number : '.2'}}</td>
         <td>
           <i *ngIf="!invoice.isPaid" class="fas fa-times" aria-hidden="true"></i>
           <i *ngIf="invoice.isPaid" class="fas fa-check" aria-hidden="true"></i>
         </td>
-        <td>{{invoice.routes.length}}</td>
+        <td>{{invoice.priceRowList.length}}</td>
         <td>
-          <i *ngIf="!invoice.isPaid" (click)="regenerate(invoice.id)" class="fas fa-redo" aria-hidden="true"></i>
+          <i *ngIf="!invoice.isPaid" (click)="regenerate(invoice.id)" class="fas fa-redo" style="cursor: pointer" aria-hidden="true"></i>
           <i *ngIf="invoice.isPaid" class="fas fa-times" aria-hidden="true"></i>
         </td>
       </tr>

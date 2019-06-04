@@ -25,7 +25,6 @@ export class AddVehicleComponent implements OnInit {
   }
 
   async onSubmit() {
-    debugger;
     var vehicle: JsonVehicle = {
       id: null,
       vehicleType: "",

@@ -10,11 +10,11 @@ export class InvoiceService {
 
   constructor(private http: HttpClient) { }
 
-  async getForVehicles(ids: number[]): Promise<Invoice[]> {
-    return this.http.get<Invoice[]>(environment.invoiceSystemUrl + `invoicesystem/vehicle/${ids.join(',')}`).toPromise();
+  async getForVehicles(chassisNumbers: string[]): Promise<Invoice[]> {
+    return this.http.get<Invoice[]>(environment.invoiceSystemUrl + `invoicesystem/vehicle/${chassisNumbers.join(',')}`).toPromise();
   }
 
   async regenerate(id: number): Promise<Invoice> {
-    return this.http.get<Invoice>(environment.invoiceSystemUrl + `invoicesystem/regenerate/${id}`).toPromise();
+    return this.http.post<Invoice>(environment.invoiceSystemUrl + `invoicesystem/regenerate/${id}`, {}).toPromise();
   }
 }
