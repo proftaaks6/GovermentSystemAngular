@@ -2,34 +2,36 @@
   <body>
 
   <div class="container">
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+      The operation wasn't succesful
+    </div>
+    <div *ngIf="success" class="alert alert-success" role="alert">
+      The operation was completed succesfully
+    </div>
+
     <br/>
     <h1>Please select your preferred tax regions:</h1>
     <br/>
 
     <div style="display: flex;">
       <form style="width: 100%; padding-right: 20px" (ngSubmit)="onSubmit()" #heroForm="ngForm">
-        <h3>Region 1:</h3>
+        <h3>Region:</h3>
         <div class="form-group">
           <label for="tax_cost_1">Tax cost:</label>
-          <input myNumberOnly type="text" [(ngModel)]="tax_cost_1" name="tax_cost" id="tax_cost_1" class="form-control">
+          <input type="number" [(ngModel)]="tax_cost_1" name="tax_cost" id="tax_cost_1" class="form-control" required>
           <div style="display: flex">
             <label>Top left:&nbsp;</label>
-            <p id="topLeft1" style="color: limegreen"></p>
+            <p id="topLeft1" style="color: limegreen">{{topLeft}}</p>
             <label style="margin-left: 50px;">Bottom right:&nbsp;</label>
-            <p id="bottomRight1" style="color: limegreen"></p>
+            <p id="bottomRight1" style="color: limegreen">{{bottomRight}}</p>
           </div>
           <div class="invisible">
             <p id="regionId"></p>
           </div>
-          <a class="btn btn-success" style="margin-top: 10px" (click)="setCoords(1)">Set this region</a>
         </div>
 
         <div style="display: flex; margin-top: 40px">
-          <button id="submitButton" type="submit" class="btn btn-success" style="">Update region</button>
-        </div>
-
-        <div style="display: flex; margin-top: 40px">
-          <a (click)="onDeleteClick()" id="deleteButton" class="btn btn-success" style="">Delete selected region</a>
+          <button id="submitButton" type="submit" class="btn btn-success" style="">{{!selectedRegion ? "Create region":"Edit region"}}</button>
         </div>
 
       </form>
@@ -41,8 +43,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let region of regions" (click)="showRegion(region)">
-          <td>{{"Top Left: " + region.topLeftLat.toString().substring(0, 6) + "/" + region.topLeftLong.toString().substring(0, 6) + " Bottom Right: " + region.bottomRightLat.toString().substring(0, 6) + "/" + region.bottomRightLong.toString().substring(0, 6)}}</td>
+        <tr *ngFor="let region of regions" (click)="showRegion(region)" [ngClass]="{'select':region.id === selectedRegion}">
+          <td *ngIf="region">{{"Top Left: " + region.topLeftLat.toString().substring(0, 6) + "/" + region.topLeftLong.toString().substring(0, 6) + " Bottom Right: " + region.bottomRightLat.toString().substring(0, 6) + "/" + region.bottomRightLong.toString().substring(0, 6)}}
+            <button style="float: right;" class="btn btn-danger" (click)="onDeleteClick(region.id)">&#10006;</button>
+          </td>
         </tr>
         </tbody>
       </table>

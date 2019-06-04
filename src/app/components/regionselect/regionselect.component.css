@@ -10,3 +10,7 @@
 td:hover{
   cursor: pointer;
 }
+
+.select{
+  background-color: lightblue;
+}

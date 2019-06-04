@@ -25,7 +25,6 @@ export class AddVehicleComponent implements OnInit {
   }
 
   async onSubmit() {
-    debugger;
     var vehicle: JsonVehicle = {
       id: null,
       vehicleType: "",
@@ -47,10 +46,6 @@ export class AddVehicleComponent implements OnInit {
       } else {
         this.error = true;
       }
-
-      // this.service.addVehicle(vehicle).catch((err: HttpErrorResponse) => {
-      //   alert("We ran into a problem while trying to add your vehicle, try again later.")
-      // });
     }
   }
 }
