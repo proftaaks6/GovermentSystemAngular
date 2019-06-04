@@ -5,5 +5,5 @@ export const environment = {
   userSystemUrl: 'userSystem/deploy/v1/',
   invoiceSystemUrl: 'invoiceSystem/deploy/v1/',
   governmentAdminUrl: 'governmentAdmin/deploy/v1/',
-  driverApplicationUrl: 'driverSystem/deploy/v1/',
+  driverApplicationUrl: 'driverApplication/deploy/v1/',
 };

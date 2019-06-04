@@ -29,7 +29,7 @@ import { HelpersModule } from '../helpers/helpers.module';
     FormsModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBhFnZsG5KqWljfwifxQf-OXVHgSZY-_-c'
+      apiKey: 'AIzaSyCtRlXHmPwNJ0hHyd2EFNldqWu1Q9y8aHk'
     }),
     HelpersModule
   ],

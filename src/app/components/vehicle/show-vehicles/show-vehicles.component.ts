@@ -18,9 +18,7 @@ export class ShowVehiclesComponent implements OnInit {
 
 
   async ngOnInit() {
-    // @ts-ignore
     this.vehicles = await this.getVehicles();
-    console.log(this.vehicles);
   }
 
   async getVehicles() {
@@ -29,7 +27,10 @@ export class ShowVehiclesComponent implements OnInit {
 
   async showRoute(vehicle: Vehicle) {
     const modal = this.modalService.open(RoutemapComponent);
-    modal.componentInstance.locations = await this.vehicleService.getLocationPointsOfVehicle(vehicle.id, new Date(2000, 1, 1), new Date());
+    let temp = await this.vehicleService.getLocationPointsOfVehicle(vehicle.chassisNumber, new Date(2000, 1, 1), new Date());
+    let temp2 = temp.map(x => { return { lat: x.latitude, lng: x.longitude } });
+    console.log(temp2);
+    modal.componentInstance.paths = temp2;
   }
 }
 
