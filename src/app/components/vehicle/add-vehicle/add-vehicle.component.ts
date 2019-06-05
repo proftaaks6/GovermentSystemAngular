@@ -46,6 +46,8 @@ export class AddVehicleComponent implements OnInit {
       } else {
         this.error = true;
       }
+    } else {
+      this.error = true;
     }
   }
 }
