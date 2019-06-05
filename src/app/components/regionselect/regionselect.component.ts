@@ -141,10 +141,6 @@ export class RegionselectComponent implements OnInit {
   }
 
   async onDeleteClick(id){
-    if(!this.selectedRegion){
-      alert("No region is currently selected, please select one from the list on the right.")
-      return;
-    }else{
       await this.regionService.deleteRegion(id).then(async x=> {
         this.regions = await this.getRegions();
         this.error = false;
@@ -154,6 +150,5 @@ export class RegionselectComponent implements OnInit {
         this.success = false;
       });
     }
-  }
 
 }
