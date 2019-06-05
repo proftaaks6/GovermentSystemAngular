@@ -14,7 +14,7 @@ import { HelpersModule } from '../helpers/helpers.module';
   declarations: [RegionselectComponent],
   imports: [
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBJ75KHIHKCbbKLZsQpYv5xGHTPA3gOHfg',
+      apiKey: 'AIzaSyCtRlXHmPwNJ0hHyd2EFNldqWu1Q9y8aHk',
       libraries: ["places"]
     }),
     CommonModule,
