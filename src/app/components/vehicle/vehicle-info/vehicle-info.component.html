@@ -1,0 +1,14 @@
+<div class="container">
+  <br/>
+  <h1>{{chassis}}</h1>
+  <div class="row">
+    <div class="col s8">
+      <app-routemap [date]="date" [chassis]="chassis"></app-routemap>>
+    </div>
+    <div class="col s4" style="max-height: 640px">
+      <div class="form-group" style="padding-top: 40px;">
+        <input class="form-control" type="date" name="date" id="date" [(ngModel)]="date">
+      </div>
+    </div>
+  </div>
+</div>

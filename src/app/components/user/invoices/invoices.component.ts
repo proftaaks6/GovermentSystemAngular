@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Invoice } from 'src/app/shared/models/invoice.model';
 import { InvoiceService } from 'src/app/shared/services/invoice.service';
 
@@ -11,6 +11,9 @@ export class InvoicesComponent implements OnInit {
 
   @Input()
   invoices: Invoice[]; 
+  @Input()
+  chassisNumbers: string[];
+  success: string;
 
   constructor(private invoiceService: InvoiceService) { }
 
@@ -25,6 +28,18 @@ export class InvoicesComponent implements OnInit {
         break;
       }
     }
+  }
+
+  async generateInvoices() {
+    try {
+      await this.invoiceService.generateForUser(this.chassisNumbers);
+      this.success = "User marked for generation - invoices will be generated within 30 seconds";
+      setTimeout(() => {
+        this.success = undefined;
+      }, 5000);
+    } catch {
+    }
+ 
   }
 
 }

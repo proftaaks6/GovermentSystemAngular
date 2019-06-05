@@ -1,7 +1,7 @@
 <h3>Locaties</h3>
 
-<agm-map *ngIf="paths" [latitude]="lat" [longitude]="long" [zoom]="zoom">
-  <agm-polyline [strokeColor]="red">
+<agm-map *ngIf="paths" [latitude]="lat" [longitude]="long" [zoom]="zoom" [streetViewControl]="false" [zoomControl]="false">
+  <agm-polyline [strokeColor]="'red'">
     <agm-polyline-point *ngFor="let point of paths" [latitude]="point.lng" [longitude]="point.lat">
     </agm-polyline-point>
   </agm-polyline>

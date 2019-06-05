@@ -1,5 +1,11 @@
 <div>
   <h3>Invoices</h3>
+  <button (click)="generateInvoices()" class="btn btn-primary" style="position: absolute; top: 0px; right: 20px;">
+      Generate
+  </button>
+  <div *ngIf="success" class="alert alert-success" role="alert">
+    {{success}}
+  </div>
   <table class="table" style="width: 100%">
     <thead>
       <tr>

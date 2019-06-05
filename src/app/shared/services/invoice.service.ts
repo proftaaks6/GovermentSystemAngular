@@ -17,4 +17,9 @@ export class InvoiceService {
   async regenerate(id: number): Promise<Invoice> {
     return this.http.post<Invoice>(environment.invoiceSystemUrl + `invoicesystem/regenerate/${id}`, {}).toPromise();
   }
+
+  async generateForUser(chassisNumbers: string[]): Promise<boolean> {
+    console.log(chassisNumbers);
+    return this.http.get<boolean>(environment.invoiceSystemUrl + `invoicesystem/markForGeneration/${chassisNumbers.join(',')}`, {}).toPromise();
+  }
 }

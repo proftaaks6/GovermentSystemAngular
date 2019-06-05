@@ -28,11 +28,15 @@ export class UserInfoComponent implements OnInit {
 
       console.log(this.user);
 
-      this.invoices = this.user.ownedVehicles.length > 0
-        ? await this.invoiceService.getForVehicles(this.user.ownedVehicles)
-        : [];
+      this.invoices = this.user.ownedVehiclesChassis.length > 0
+      ? await this.invoiceService.getForVehicles(this.user.ownedVehiclesChassis)
+      : [];  
 
-        console.log(this.invoices);
+      setInterval(async () => {
+        this.invoices = this.user.ownedVehiclesChassis.length > 0
+        ? await this.invoiceService.getForVehicles(this.user.ownedVehiclesChassis)
+        : [];  
+      }, 5000);
     });
   }
 

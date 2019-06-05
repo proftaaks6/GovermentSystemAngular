@@ -13,6 +13,7 @@ import { VehicleComponent } from './vehicle.component';
 import { LinkToUserComponent } from './link-to-user/link-to-user.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { HelpersModule } from '../helpers/helpers.module';
+import { VehicleInfoComponent } from './vehicle-info/vehicle-info.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HelpersModule } from '../helpers/helpers.module';
     RoutemapComponent,
     VehicleComponent,
     LinkToUserComponent,
-    AddVehicleComponent
+    AddVehicleComponent,
+    VehicleInfoComponent
   ],
   imports: [
     CommonModule,
