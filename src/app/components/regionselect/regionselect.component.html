@@ -1,5 +1,6 @@
 <html>
-  <body>
+
+<body>
 
   <div class="container">
     <div *ngIf="error" class="alert alert-danger" role="alert">
@@ -9,52 +10,106 @@
       The operation was completed succesfully
     </div>
 
-    <br/>
-    <h1>Please select your preferred tax regions:</h1>
-    <br/>
+    <br />
+    <h1>Tax regions:</h1>
+    <br />
 
-    <div style="display: flex;">
-      <form style="width: 100%; padding-right: 20px" (ngSubmit)="onSubmit()" #heroForm="ngForm">
-        <h3>Region:</h3>
-        <div class="form-group">
-          <label for="tax_cost_1">Tax cost:</label>
-          <input type="number" [(ngModel)]="tax_cost_1" name="tax_cost" id="tax_cost_1" class="form-control" required>
-          <div style="display: flex">
-            <label>Top left:&nbsp;</label>
-            <p id="topLeft1" style="color: limegreen">{{topLeft}}</p>
-            <label style="margin-left: 50px;">Bottom right:&nbsp;</label>
-            <p id="bottomRight1" style="color: limegreen">{{bottomRight}}</p>
+    <div class="row">
+      <div class="col">
+        <h3>Existing regions</h3>
+        <table class="table" style="width: 100%">
+          <thead>
+            <tr>
+              <th style="text-align: center">#</th>
+              <th style="text-align: center">Editting</th>
+              <th>Top left</th>
+              <th>Bottom right</th>
+              <th>Cost</th>
+              <th style="text-align: center">Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let region of regions; let i = index" (click)="editRegion(region)"
+              [ngClass]="{'select':region === selectedRegion, 'deleted': region.deleted}">
+              <td style="text-align: center">{{i + 1}}</td>
+              <td style="text-align: center">
+                <div class="row">
+                  <div class="col s3"></div>
+                  <div class="col s6" style="border-radius: 10%; height: 25px;"
+                    [ngStyle]="{'background-color': region.color}">
+                    <i *ngIf="selectedRegion === region" class="fas fa-edit" aria-hidden="true"
+                      style="color: white"></i>
+                  </div>
+                  <div class="col s3"></div>
+                </div>
+              </td>
+              <td>
+                {{region.topLeftLat.toString().substring(0, 6) + "/" + region.topLeftLong.toString().substring(0, 6)}}
+              </td>
+              <td>
+                {{region.bottomRightLat.toString().substring(0, 6) + "/" + region.bottomRightLong.toString().substring(0, 6)}}
+              </td>
+              <td>&euro;{{region.taxRate | number : '1.2-2'}}</td>
+              <td style="text-align: center">
+                <button class="btn btn-sm btn-danger" style="min-width: 35px; margin-top: -3px" type="button"
+                  (click)="onDeleteClick($event, region)">
+                  <i *ngIf="region.deleted" class="fas fa-redo" aria-hidden="true"></i>
+                  <i *ngIf="!region.deleted" class="fas fa-trash-alt" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="row" style="text-align: center; margin-top: 20px">
+          <div class="col">
+            <button id="submitButton" type="button" class="btn btn-sm btn-secondary" (click)="addRegion()">Add new
+              region</button>
           </div>
-          <div class="invisible">
-            <p id="regionId"></p>
+          <div class="col">
+              <button id="saveButton" type="button" class="btn btn-sm btn-success" (click)="saveRegions()">Save regions</button>
           </div>
         </div>
+      </div>
 
-        <div style="display: flex; margin-top: 40px">
-          <button id="submitButton" type="submit" class="btn btn-success" style="">{{!selectedRegion ? "Create region":"Edit region"}}</button>
+      <div class="col">
+        <div class="div" *ngIf="selectedRegion">
+          <h3>Editting region {{selectedRegionIndex + 1}}:</h3>
+          <table class="table" style="width: 100%">
+            <thead>
+              <tr>
+                <th>Tax cost <small>(&euro;/km)</small></th>
+                <th>Top left</th>
+                <th>Bottom right</th>
+              </tr>
+            </thead>
+            <tbody>
+              <td>
+                <div class="form-group">
+                  <input class="form-control" style="height: 25px;" type="number" name="taxCost" id="taxCost"
+                    [(ngModel)]="selectedRegion.taxRate" min="0" step="0.01">
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input class="form-control" style="height: 25px;" type="text" name="topLeft" id="topLeft"
+                    [ngModel]="Region.getTopLeftString(selectedRegion)" disabled>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input class="form-control" style="height: 25px;" type="text" name="bottomRight" id="bottomRight"
+                    [ngModel]="Region.getBottomRightString(selectedRegion)" disabled>
+                </div>
+              </td>
+            </tbody>
+          </table>
         </div>
-
-      </form>
-      <table class="table" style="width: 100%">
-        <thead>
-        <tr>
-          <th scope="col"> Existing regions
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let region of regions" (click)="showRegion(region)" [ngClass]="{'select':region.id === selectedRegion}">
-          <td *ngIf="region">{{"Top Left: " + region.topLeftLat.toString().substring(0, 6) + "/" + region.topLeftLong.toString().substring(0, 6) + " Bottom Right: " + region.bottomRightLat.toString().substring(0, 6) + "/" + region.bottomRightLong.toString().substring(0, 6)}}
-            <button style="float: right;" class="btn btn-danger" (click)="onDeleteClick(region.id)">&#10006;</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-
+      </div>
     </div>
   </div>
-  <br/>
-  <p style="text-align: center">Drag the box and click "Set this region" to update its effective area.</p>
+  <br />
   <div id="map"></div>
-  </body>
+</body>
+
 </html>

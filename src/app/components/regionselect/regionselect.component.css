@@ -14,3 +14,11 @@ td:hover{
 .select{
   background-color: lightblue;
 }
+
+.deleted > td {
+  color: lightgrey;
+}
+
+.deleted {
+  background-color: unset !important;
+}

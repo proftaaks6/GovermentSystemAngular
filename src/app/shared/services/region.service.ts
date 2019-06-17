@@ -10,14 +10,12 @@ import {toPromise} from "rxjs-compat/operator/toPromise";
 export class RegionService {
   constructor(private http: HttpClient) { }
 
-  async addRegion(region: Region): Promise<ClientUser> {
-    let body = JSON.stringify(region);
-
+  async saveRegions(regions: Region[]): Promise<Region[]> {
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     };
 
-    return await this.http.post<ClientUser>(environment.invoiceSystemUrl + 'region', body.toString(), options).toPromise();
+    return await this.http.post<Region[]>(environment.invoiceSystemUrl + 'region', regions, options).toPromise();
   }
 
   async getRegions(): Promise<Region[]> {

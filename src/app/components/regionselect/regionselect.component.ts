@@ -1,13 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { LatLng, MapsAPILoader } from '@agm/core';
-import { Map } from "googlemaps";
 import { Region } from "../../models/region.model";
 import { RegionService } from "../../shared/services/region.service";
 import { HttpResponse } from "@angular/common/http";
 import {forEach} from "@angular/router/src/utils/collection";
 
 declare var google;
-var firstRectangle;
 
 @Component({
   selector: 'app-regionselect',
@@ -15,24 +13,18 @@ var firstRectangle;
   styleUrls: ['./regionselect.component.css']
 })
 export class RegionselectComponent implements OnInit {
-  @ViewChild("map") public mapElement: ElementRef;
   map: google.maps.Map;
 
   regions: Region[] = [];
+  rectangles: Map<Region, google.maps.Rectangle> = new Map();
+  colors = ["darkblue", "red", "orange", "purple", "green"];
 
-  newRegion: Region;
+  selectedRegionIndex: number;
+  selectedRegion: Region;
+  temporaryRectangle: google.maps.Rectangle;
 
-  firstRectangle: any;
-
-  selectedRegion: number;
-
-  tax_cost_1: number;
-
-  firstRegionNE: LatLng;
-  firstRegionSW: LatLng;
-
-  topLeft : string;
-  bottomRight: string;
+  // Reference to type to call static functions
+  Region = Region;
 
   error = false;
   success = false;
@@ -42,113 +34,149 @@ export class RegionselectComponent implements OnInit {
   }
 
   async ngOnInit() {
-
-    //Get existing regions if any.
-    this.regions = await this.getRegions();
-
-    const coords = {
-      north: 51.728078,
-      south: 51.367872,
-      east: 5.106989,
-      west: 4.366204
-    };
-
     //Initialize the map at given coordinates.
-    this.mapsAPILoader.load().then(() => {
+    this.mapsAPILoader.load().then(async () => {
       var mapProp = {
         center: new google.maps.LatLng(51.554948, 5.161622),
         zoom: 9,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       this.map = new google.maps.Map(document.getElementById("map"), mapProp);
-      this.firstRectangle = new google.maps.Rectangle({
-        bounds: coords,
-        editable: true,
-        draggable: true,
-        fillColor: 'grey',
-        strokeColor: 'darkblue'
-      });
-      this.firstRectangle.setMap(this.map);
 
-      //Optional listener
-      this.firstRectangle.addListener('bounds_changed', this.setCoords);
+      //Get existing regions if any.
+      this.regions = await this.getRegions();
+      if (this.regions.length > 0) {
+        this.setRectanglesForRegions();
+      }
     });
+  }
+
+  editRegion(region: Region) {
+    if (region.deleted) {
+      return;
+    }
+
+    this.rectangles.forEach(rectangle => {
+      rectangle.setEditable(false);
+      rectangle.setDraggable(false);
+    });
+
+    if (this.selectedRegion == region) {
+      this.selectedRegion = null;
+      this.selectedRegionIndex = null;
+      return;
+    };
+
+    this.selectedRegionIndex = this.regions.indexOf(region);
+    this.selectedRegion = region;
+    let rectangle = this.rectangles.get(region);
+    rectangle.setEditable(true);
+    rectangle.setDraggable(true);
+
+    this.rectangles.set(region, rectangle);
+
+    this.setCoords();
+  }
+
+  addRegion() {
+    let center = this.map.getCenter();
+
+    let region: Region = new Region();
+    region.color = this.colors[this.rectangles.size % this.colors.length];
+    region.taxRate = 0;
+    region.topLeftLat = center.lat() + 0.1;
+    region.topLeftLong = center.lng() + 0.1;
+    region.bottomRightLat = center.lat() - 0.1;
+    region.bottomRightLong = center.lng() - 0.1;
+
+    this.regions.push(region);
+    this.createRectangle(region);
+    this.editRegion(region);
   }
 
   setCoords = () => {
-        this.firstRegionNE = this.firstRectangle.getBounds().getNorthEast();
-        this.firstRegionSW = this.firstRectangle.getBounds().getSouthWest();
-        this.topLeft = "lng" + (Math.round(this.firstRegionNE.lng()*1000)/1000).toString() + "/lat" + (Math.round(this.firstRegionNE.lat()*1000)/1000).toString();
-        this.bottomRight =  "lng" + (Math.round(this.firstRegionSW.lng()*1000)/1000).toString() + "/lat" + (Math.round(this.firstRegionSW.lat()*1000)/1000).toString();
+    let rectangle: google.maps.Rectangle;
+    if (this.selectedRegion) {
+      rectangle = this.rectangles.get(this.selectedRegion);
+    } else {
+      rectangle = this.temporaryRectangle;
+    }
+    let regionNE = rectangle.getBounds().getNorthEast();
+    let regionSW = rectangle.getBounds().getSouthWest();
+
+    this.selectedRegion.topLeftLat = regionNE.lat();
+    this.selectedRegion.topLeftLong = regionNE.lng();
+    this.selectedRegion.bottomRightLat = regionSW.lat();
+    this.selectedRegion.bottomRightLong = regionSW.lng();
   };
 
-  async onSubmit() {
+  async saveRegions() {
+    this.error = false;
+    this.success = false;
+
     if(this.selectedRegion){
-      //Push regions into array and send to endpoint.
-      this.newRegion = new Region(this.selectedRegion, this.firstRegionNE.lat(), this.firstRegionNE.lng(), this.firstRegionSW.lat(), this.firstRegionSW.lng(), this.tax_cost_1);
-    }else{
-      //Push regions into array and send to endpoint. undefined Id
-      this.newRegion = new Region(-1, this.firstRegionNE.lat(), this.firstRegionNE.lng(), this.firstRegionSW.lat(), this.firstRegionSW.lng(), this.tax_cost_1);
+      this.editRegion(this.selectedRegion);
     }
 
-    await this.regionService.addRegion(this.newRegion).then(x=> {
-      this.error = false;
+    await this.regionService.saveRegions(this.regions.filter(region => !region.deleted)).then(regions => {
       this.success = true;
+      this.regions = regions;
+      this.setRectanglesForRegions();
     }).catch( x=>{
       this.error = true;
-      this.success = false;
     });
-
-    window.scrollTo(0,0);
-
-    //Get existing regions if any.
-    this.regions = await this.getRegions();
-
-    //Clear region afterwards.
-    this.newRegion = null;
-  }
-
-  showRegion(region){
-    if(region.id === this.selectedRegion){
-      this.selectedRegion = undefined;
-      return;
-    }
-    this.selectedRegion = region.id;
-
-    window.scrollTo(0,document.body.scrollHeight);
-
-    const coords = {
-      north: region.topLeftLat,
-      south: region.bottomRightLat,
-      east: region.topLeftLong,
-      west: region.bottomRightLong
-    };
-
-    var mapProp = {
-      center: new google.maps.LatLng(51.554948, 5.161622),
-      zoom: 9,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    this.firstRectangle.setBounds(coords);
-    //this.map = new google.maps.Map(document.getElementById("map"), mapProp);
-
-    this.setCoords();
   }
 
   async getRegions(){
     return await this.regionService.getRegions();
   }
 
-  async onDeleteClick(id){
-      await this.regionService.deleteRegion(id).then(async x=> {
-        this.regions = await this.getRegions();
-        this.error = false;
-        this.success = true;
-      }).catch( x=>{
-        this.error = true;
-        this.success = false;
-      });
+  private createRectangle(region: Region) {
+    let coords = {
+      north: region.topLeftLat,
+      south: region.bottomRightLat,
+      east: region.topLeftLong,
+      west: region.bottomRightLong
+    };
+    
+    let rectangle = new google.maps.Rectangle({
+      bounds: coords,
+      editable: false,
+      draggable: false,
+      fillColor: 'grey',
+      strokeColor: region.color
+    });
+    
+    // Add listener so that when rectangle is editable it is already set
+    rectangle.addListener('bounds_changed', this.setCoords);
+    rectangle.setMap(this.map);
+    
+    this.rectangles.set(region, rectangle);
+  }
+
+  setRectanglesForRegions() {
+    this.rectangles.forEach(rectangle => rectangle.setVisible(false));
+    this.rectangles = new Map();
+    if (this.temporaryRectangle) {
+      this.temporaryRectangle.setVisible(false);
+      this.temporaryRectangle = undefined;
+    }
+    this.regions.forEach((region, i) => {
+      region.color = this.colors[i % this.colors.length];
+      this.createRectangle(region);
+    })
+  }
+
+  async onDeleteClick(event, region: Region){
+    event.stopPropagation();
+
+    if (this.selectedRegion == region) {
+      this.selectedRegion = null;
+      this.selectedRegionIndex = null;
     }
 
+    region.deleted = !region.deleted;
+    let rectangle = this.rectangles.get(region);
+    rectangle.setVisible(!region.deleted);
+  }
 }
